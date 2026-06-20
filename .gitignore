@@ -2,11 +2,17 @@ not_in_github/
 __pycache__/
 *.pyc
 .env
+.env.local
+.env.prod
 *.pkl
 *.pt
 *.parquet
+*.csv
+*.rdb
 models/
 .venv/
+.venv312/
+.claude/
 node_modules/
 frontend/dist/
 static/
