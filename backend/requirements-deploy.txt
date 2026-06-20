@@ -1,0 +1,60 @@
+# Slim API runtime for free-tier hosting (Render free tier, 512 MB RAM).
+#
+# Excludes: torch, shap, tabnet, lightgbm — too large for Render free build/disk.
+# The lifespan degrades gracefully: all HTTP endpoints remain live, ML inference
+# falls back to the subset of models that fit (CatBoost + RF + LR load from R2).
+# For full multi-modal inference, deploy the Docker image instead.
+
+# ── Core API ──────────────────────────────────────────────────────────────────
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+pydantic==2.7.4
+pydantic-settings==2.3.4
+structlog==24.4.0
+tenacity==8.5.0
+aiofiles==24.1.0
+httpx==0.27.0
+python-multipart==0.0.9
+jinja2==3.1.4
+
+# ── Database ──────────────────────────────────────────────────────────────────
+asyncpg==0.29.0
+pgvector>=0.2.5
+
+# ── Cache / rate-limit ────────────────────────────────────────────────────────
+redis==5.0.7
+slowapi==0.1.9
+
+# ── Auth / security ───────────────────────────────────────────────────────────
+pyjwt==2.8.0
+python-jose==3.3.0
+
+# ── Observability ─────────────────────────────────────────────────────────────
+prometheus-client==0.20.0
+prometheus-fastapi-instrumentator==7.0.0
+
+# ── Data / ML ─────────────────────────────────────────────────────────────────
+pandas==2.3.3
+numpy==2.4.4
+scikit-learn==1.8.0
+scipy==1.17.1
+joblib==1.5.3
+pandera>=0.20.2
+
+# CatBoost: compact enough for free tier (~40 MB wheel, no torch dep).
+catboost>=1.2.7
+# LightGBM: ~10 MB wheel, needed for v5 CalibratedEnsemble.
+lightgbm>=4.3.0
+
+# ── LLM / RAG ─────────────────────────────────────────────────────────────────
+anthropic>=0.39.0,<1.0
+openai>=1.30.0
+tiktoken>=0.7.0
+biopython>=1.83
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+requests==2.31.0
+celery==5.4.0
+
+# R2 artifact pull on startup (no-op when R2_* env vars are unset).
+boto3>=1.34,<2.0

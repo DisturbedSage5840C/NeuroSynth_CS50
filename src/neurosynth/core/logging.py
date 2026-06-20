@@ -1,0 +1,22 @@
+import logging
+import structlog
+
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
+
+def configure_logging(log_level: str = "INFO") -> None:
+    logging.basicConfig(level=getattr(logging, log_level.upper(), logging.INFO), format="%(message)s")
+    structlog.configure(
+        processors=[
+            structlog.contextvars.merge_contextvars,
+            structlog.processors.add_log_level,
+            structlog.processors.TimeStamper(fmt="iso", utc=True),
+            structlog.processors.dict_tracebacks,
+            structlog.processors.JSONRenderer(),
+        ],
+        wrapper_class=structlog.make_filtering_bound_logger(getattr(logging, log_level.upper(), logging.INFO)),
+        cache_logger_on_first_use=True,
+    )
+
+
+def get_logger(name: str):
+    return structlog.get_logger(name)

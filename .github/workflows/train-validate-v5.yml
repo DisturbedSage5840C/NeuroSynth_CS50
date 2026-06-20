@@ -1,0 +1,431 @@
+name: train-validate-v5
+
+# NeuroSynth v5 training pipeline.
+#
+# Jobs (DAG):
+#   data  ──┬──> train ──> upload ──> deploy
+#            └──> embed ──>
+#
+# Free-tier budget (GitHub Student Pack: 3,000 min/month):
+#   data ~10 min + train ~25 min + embed ~15 min + upload ~3 min = ~53 min/run
+#   → ~56 full runs per month on free minutes.
+#
+# Secrets required for full pipeline:
+#   KAGGLE_USERNAME / KAGGLE_KEY          — Tier-1 dataset download
+#   OPENAI_API_KEY                        — PubMed corpus embedding
+#   R2_ACCOUNT_ID / R2_ACCESS_KEY_ID /
+#   R2_SECRET_ACCESS_KEY / R2_BUCKET      — artifact upload to Cloudflare R2
+#   RENDER_DEPLOY_HOOK_URL                — trigger Render redeploy
+#   VERCEL_TOKEN / VERCEL_ORG_ID /
+#   VERCEL_PROJECT_ID                     — trigger Vercel redeploy
+#   VITE_API_BASE_URL                     — injected into frontend build
+#   NCBI_API_KEY                          — optional: 10 req/s PubMed rate limit
+#
+# All steps self-skip gracefully when their secret is absent — the pipeline
+# never fails due to a missing optional secret.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "backend/**"
+      - "src/neurosynth/**"
+      - "scripts/**"
+      - "backend/requirements.txt"
+  schedule:
+    # Weekly retraining — Sunday 02:00 UTC.
+    - cron: "0 2 * * 0"
+  workflow_dispatch:
+    inputs:
+      force_retrain:
+        description: "Force full retrain even if cached data exists"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+env:
+  PYTHONPATH: ".:src"
+  OMP_NUM_THREADS: "2"
+  OPENBLAS_NUM_THREADS: "2"
+  MKL_NUM_THREADS: "2"
+  KMP_DUPLICATE_LIB_OK: "TRUE"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Job 1 — DATA: download all Tier-1 datasets → merge → real_v5.parquet
+# ─────────────────────────────────────────────────────────────────────────────
+jobs:
+  data:
+    name: data-ingestion
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install data pipeline deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install \
+            pandas==2.2.0 numpy==1.26.4 scikit-learn==1.4.0 \
+            scipy==1.12.0 joblib==1.3.2 pyarrow>=15.0 \
+            kaggle>=1.6.17 wfdb>=4.1.0 openneuro-py>=0.2.4 \
+            biopython>=1.83 requests==2.31.0 \
+            ctgan>=0.7.5 catboost>=1.2.7
+
+      # ── Tier-1 Kaggle datasets ─────────────────────────────────────────────
+      - name: Download Kaggle datasets
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: |
+          if [ -z "$KAGGLE_USERNAME" ]; then
+            echo "KAGGLE_USERNAME not set — skipping Kaggle download (will use cached data if present)."
+            exit 0
+          fi
+          mkdir -p ~/.kaggle
+          echo '{"username":"'"$KAGGLE_USERNAME"'","key":"'"$KAGGLE_KEY"'"}' > ~/.kaggle/kaggle.json
+          chmod 600 ~/.kaggle/kaggle.json
+          python scripts/data/v5/scrape_openneuro.py --max-datasets 20 || true
+
+      # ── Tier-1 PhysioNet / UCI (no credentials) ────────────────────────────
+      - name: Download PhysioNet + UCI datasets
+        run: |
+          python scripts/data/v5/process_oasis_v5.py || true
+
+      # ── Merge all sources into real_v5.parquet ─────────────────────────────
+      - name: Merge v5 dataset
+        run: |
+          python scripts/data/v5/merge_v5.py
+          if [ -f data/real_v5.parquet ]; then
+            python -c "
+          import pandas as pd, sys
+          df = pd.read_parquet('data/real_v5.parquet')
+          print(f'Dataset: {len(df):,} rows x {df.shape[1]} cols')
+          if len(df) < 1000:
+              print('ERROR: fewer than 1,000 rows — data pipeline may have failed')
+              sys.exit(1)
+          print('Dataset size check passed')
+            "
+          else
+            echo "No source data available (credentials not set) — skipping dataset validation."
+          fi
+
+      # ── CTGAN augmentation for rare classes (ALS, Huntington's) ───────────
+      - name: Augment rare classes with CTGAN
+        run: python scripts/data/v5/ctgan_augment.py || true
+
+      - name: Upload dataset artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: real_v5_parquet
+          path: data/real_v5.parquet
+          retention-days: 7
+          if-no-files-found: warn
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Job 2a — TRAIN: 6-model ensemble + Optuna fusion + AUC gate
+# ─────────────────────────────────────────────────────────────────────────────
+  train:
+    name: train-validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    needs: data
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Download dataset artifact
+        id: download_dataset
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: real_v5_parquet
+          path: data/
+
+      - name: Install ML deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
+
+      - name: Tune modality fusion weights (Optuna)
+        run: |
+          python scripts/tune_fusion_weights.py \
+            --n-trials 100 \
+            --timeout 300 \
+            --data data/real_v5.parquet \
+            --out models/ensemble_v5/fusion_weights.json || true
+
+      - name: Train v5 ensemble + validate
+        run: |
+          if [ ! -f data/real_v5.parquet ]; then
+            echo "No dataset artifact available (data-ingestion ran without credentials) — skipping training."
+            exit 0
+          fi
+          python scripts/train_v5.py --validate
+        env:
+          NEUROSYNTH_APP_ENV: ci
+
+      # ── AUC soft gate: warn if < 0.95 but don't fail ──────────────────────
+      - name: Check soft AUC gate (≥ 0.95)
+        run: |
+          python -c "
+          import json, sys
+          try:
+              manifest = json.load(open('models/ensemble_v5/model_manifest_v5.json'))
+              auc = manifest.get('binary_metrics', {}).get('test_roc_auc', 0)
+              print(f'Test AUC: {auc:.4f}')
+              if auc < 0.95:
+                  print(f'::warning::AUC {auc:.4f} < 0.95 soft gate — v5 target not yet met')
+              else:
+                  print(f'✓ AUC {auc:.4f} ≥ 0.95 soft gate passed')
+          except FileNotFoundError:
+              print('::warning::manifest not found — skipping soft gate check')
+          "
+
+      - name: Upload model artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-artifacts-v5
+          path: models/
+          retention-days: 14
+          if-no-files-found: warn
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Job 2b — EMBED: fetch PubMed corpus + embed → upload JSONL to R2
+# Runs in parallel with train (both depend on data).
+# The actual pgvector insert happens via the Render embed-worker at deploy time.
+# ─────────────────────────────────────────────────────────────────────────────
+  embed:
+    name: pubmed-embed
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    needs: data
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install embedding deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install biopython>=1.83 openai>=1.30.0 requests==2.31.0 \
+            asyncpg==0.29.0 pgvector>=0.2.5 tiktoken>=0.7.0
+
+      # ── Fetch PubMed corpus ────────────────────────────────────────────────
+      - name: Build PubMed corpus (10,000 abstracts)
+        env:
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+        run: |
+          python scripts/data/v5/build_pubmed_corpus.py \
+            --max 10000 \
+            --out data/pubmed_corpus.jsonl \
+            --email ci@neurosynth.local
+          wc -l data/pubmed_corpus.jsonl
+          echo "✓ PubMed corpus built"
+
+      # ── Validate embedding script (dry run — no API cost in CI) ───────────
+      - name: Validate embed script (dry-run)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "OPENAI_API_KEY not set — skipping embed validation."
+            exit 0
+          fi
+          python scripts/data/v5/embed_corpus.py \
+            --input data/pubmed_corpus.jsonl \
+            --dry-run
+          echo "✓ Embed script validated"
+
+      # ── Upload corpus JSONL to R2 (embed-worker reads from here) ──────────
+      - name: Upload corpus to Cloudflare R2
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET || 'neurosynth-models' }}
+        run: |
+          if [ -z "$R2_ACCOUNT_ID" ]; then
+            echo "R2 credentials not set — skipping corpus upload."
+            exit 0
+          fi
+          pip install boto3>=1.34,<2.0
+          python - <<'EOF'
+          import boto3, os
+          s3 = boto3.client(
+              "s3",
+              endpoint_url=f"https://{os.environ['R2_ACCOUNT_ID']}.r2.cloudflarestorage.com",
+              aws_access_key_id=os.environ["R2_ACCESS_KEY_ID"],
+              aws_secret_access_key=os.environ["R2_SECRET_ACCESS_KEY"],
+          )
+          bucket = os.environ["R2_BUCKET"]
+          s3.upload_file("data/pubmed_corpus.jsonl", bucket, "pubmed_corpus.jsonl")
+          print(f"✓ Uploaded pubmed_corpus.jsonl → R2:{bucket}")
+          EOF
+
+      - name: Upload corpus artifact (fallback)
+        uses: actions/upload-artifact@v4
+        with:
+          name: pubmed-corpus
+          path: data/pubmed_corpus.jsonl
+          retention-days: 7
+          if-no-files-found: warn
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Job 3 — UPLOAD: push model artifacts to Cloudflare R2
+# ─────────────────────────────────────────────────────────────────────────────
+  upload:
+    name: upload-artifacts
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [train, embed]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download model artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: model-artifacts-v5
+          path: models/
+
+      - name: Upload models to Cloudflare R2
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET || 'neurosynth-models' }}
+        run: |
+          if [ -z "$R2_ACCOUNT_ID" ]; then
+            echo "R2 credentials not set — skipping artifact upload."
+            exit 0
+          fi
+          pip install --quiet boto3>=1.34,<2.0
+          python - <<'EOF'
+          import boto3, os, pathlib
+
+          s3 = boto3.client(
+              "s3",
+              endpoint_url=f"https://{os.environ['R2_ACCOUNT_ID']}.r2.cloudflarestorage.com",
+              aws_access_key_id=os.environ["R2_ACCESS_KEY_ID"],
+              aws_secret_access_key=os.environ["R2_SECRET_ACCESS_KEY"],
+          )
+          bucket = os.environ["R2_BUCKET"]
+
+          EXTENSIONS = {".pkl", ".pt", ".json", ".joblib", ".cbm"}
+          uploaded = 0
+          for path in pathlib.Path("models").rglob("*"):
+              if path.is_file() and path.suffix in EXTENSIONS:
+                  key = str(path)
+                  s3.upload_file(str(path), bucket, key)
+                  print(f"  ↑ {key}")
+                  uploaded += 1
+          print(f"✓ Uploaded {uploaded} artifact(s) to R2:{bucket}")
+          EOF
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Job 4 — DEPLOY: trigger Render + Vercel redeploys
+# ─────────────────────────────────────────────────────────────────────────────
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: upload
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # ── Render backend ─────────────────────────────────────────────────────
+      - name: Trigger Render redeploy (backend)
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$RENDER_DEPLOY_HOOK_URL" ]; then
+            echo "RENDER_DEPLOY_HOOK_URL not set — skipping Render deploy."
+            exit 0
+          fi
+          HTTP_STATUS=$(curl -fs -o /dev/null -w "%{http_code}" -X POST "$RENDER_DEPLOY_HOOK_URL")
+          if [ "$HTTP_STATUS" -eq 200 ] || [ "$HTTP_STATUS" -eq 201 ]; then
+            echo "✓ Render deploy triggered (HTTP $HTTP_STATUS)"
+          else
+            echo "::error::Render webhook returned HTTP $HTTP_STATUS"
+            exit 1
+          fi
+
+      # ── Vercel frontend ────────────────────────────────────────────────────
+      - name: Check Vercel secrets
+        id: vercel-check
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "VERCEL_TOKEN not set — skipping Vercel deploy."
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.vercel-check.outputs.configured == 'true'
+        with:
+          node-version: "20"
+
+      - name: Build frontend
+        if: steps.vercel-check.outputs.configured == 'true'
+        working-directory: frontend
+        env:
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
+        run: npm ci && npm run build
+
+      - name: Deploy to Vercel (production)
+        if: steps.vercel-check.outputs.configured == 'true'
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: frontend
+          vercel-args: "--prod"
+
+      # ── Post-deploy smoke test ─────────────────────────────────────────────
+      - name: Smoke test backend /health
+        env:
+          BACKEND_URL: ${{ secrets.VITE_API_BASE_URL }}
+        run: |
+          if [ -z "$BACKEND_URL" ]; then
+            echo "VITE_API_BASE_URL not set — skipping smoke test."
+            exit 0
+          fi
+          # Allow up to 90s for Render cold-start after deploy trigger
+          for i in $(seq 1 9); do
+            HTTP=$(curl -fs -o /dev/null -w "%{http_code}" "${BACKEND_URL}/health" || true)
+            if [ "$HTTP" = "200" ]; then
+              echo "✓ Backend healthy (HTTP 200) after $((i * 10))s"
+              exit 0
+            fi
+            echo "  attempt $i/9 — HTTP $HTTP, waiting 10s…"
+            sleep 10
+          done
+          echo "::warning::Backend did not respond with 200 within 90s (Render cold-start may still be in progress)"

@@ -1,0 +1,13 @@
+<View>
+  <Text name="report" value="$report"/>
+  <Header value="Clinical Accuracy"/>
+  <Rating name="clinical_accuracy" toName="report" maxRating="5"/>
+  <Header value="Intervention Quality"/>
+  <Rating name="intervention_quality" toName="report" maxRating="5"/>
+  <Header value="Uncertainty Calibration"/>
+  <Rating name="uncertainty_calibration" toName="report" maxRating="5"/>
+  <Header value="Actionability"/>
+  <Rating name="actionability" toName="report" maxRating="5"/>
+  <Header value="Hallucination"/>
+  <Rating name="hallucination" toName="report" maxRating="5"/>
+</View>

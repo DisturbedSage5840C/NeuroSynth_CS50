@@ -1,0 +1,274 @@
+/*
+ * Clinical Intelligence Terminal — auth experience (Gap 6).
+ * Replaces the previous glassmorphism / floating-orb landing with a stark,
+ * dark, data-dense terminal aesthetic. Monospace data, no decorative animation.
+ */
+
+:root {
+  --ns-bg: #0b0e14;
+  --ns-surface: #141820;
+  --ns-surface-2: #1c2330;
+  --ns-border: rgba(255, 255, 255, 0.08);
+  --ns-border-strong: rgba(255, 255, 255, 0.16);
+  --ns-text: #e2e8f0;
+  --ns-text-2: #94a3b8;
+  --ns-text-3: #64748b;
+  --ns-accent: #00d4aa;
+  --ns-danger: #ef4444;
+}
+
+.ns-terminal {
+  position: relative;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(0, 212, 170, 0.06), transparent 60%),
+    var(--ns-bg);
+  color: var(--ns-text);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.ns-terminal-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 100% 3px;
+  opacity: 0.5;
+}
+
+/* --- chips / labels --- */
+.ns-term-chip {
+  display: inline-block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ns-accent);
+  border: 1px solid var(--ns-border-strong);
+  border-radius: 4px;
+  padding: 4px 10px;
+}
+
+.ns-term-wordmark {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 600;
+  font-size: clamp(44px, 8vw, 84px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--ns-text);
+}
+.ns-term-wordmark-sm {
+  font-size: clamp(28px, 5vw, 36px);
+}
+
+.ns-term-subhead {
+  color: var(--ns-text-2);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* --- stats grid --- */
+.ns-term-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  max-width: 460px;
+}
+.ns-term-stat {
+  border: 1px solid var(--ns-border);
+  border-left: 2px solid var(--ns-accent);
+  background: var(--ns-surface);
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.ns-term-stat-value {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--ns-text);
+}
+.ns-term-stat-label {
+  font-size: 11px;
+  color: var(--ns-text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+
+/* --- CTA / submit --- */
+.ns-term-cta,
+.ns-term-submit {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ns-accent);
+  background: transparent;
+  border: 1px solid var(--ns-accent);
+  border-radius: 6px;
+  padding: 12px 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  text-decoration: none;
+}
+.ns-term-cta:hover,
+.ns-term-submit:hover:not(:disabled) {
+  background: rgba(0, 212, 170, 0.12);
+}
+.ns-term-submit {
+  width: 100%;
+  margin-top: 18px;
+}
+.ns-term-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ns-term-foot {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--ns-text-3);
+}
+
+/* --- boot readout panel --- */
+.ns-term-panel {
+  border: 1px solid var(--ns-border);
+  border-radius: 10px;
+  background: var(--ns-surface);
+  overflow: hidden;
+}
+.ns-term-panel-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--ns-border);
+  background: var(--ns-surface-2);
+}
+.ns-term-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ns-border-strong);
+}
+.ns-term-panel-title {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--ns-text-3);
+  margin-left: 8px;
+}
+.ns-term-readout {
+  margin: 0;
+  padding: 16px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12.5px;
+  line-height: 1.85;
+  color: var(--ns-text-2);
+  white-space: pre-wrap;
+}
+.ns-term-ok {
+  color: var(--ns-text);
+}
+
+/* --- login card --- */
+.ns-term-login {
+  width: 100%;
+  max-width: 380px;
+  border: 1px solid var(--ns-border);
+  background: var(--ns-surface);
+  border-radius: 12px;
+  padding: 26px 24px 22px;
+}
+.ns-term-back {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--ns-text-3);
+  text-decoration: none;
+}
+.ns-term-back:hover {
+  color: var(--ns-text);
+}
+.ns-term-login-head {
+  margin: 10px 0 18px;
+}
+.ns-term-prompt {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ns-accent);
+  text-transform: uppercase;
+}
+.ns-term-label {
+  display: block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--ns-text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 14px 0 6px;
+}
+.ns-term-input {
+  width: 100%;
+  height: 38px;
+  background: var(--ns-bg);
+  border: 1px solid var(--ns-border);
+  border-radius: 6px;
+  padding: 0 12px;
+  color: var(--ns-text);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  outline: none;
+}
+.ns-term-input:focus {
+  border-color: var(--ns-accent);
+}
+
+/* segmented role control */
+.ns-term-segment {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--ns-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.ns-term-segment-btn {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 9px 4px;
+  background: var(--ns-bg);
+  color: var(--ns-text-3);
+  border: none;
+  border-right: 1px solid var(--ns-border);
+  cursor: pointer;
+}
+.ns-term-segment-btn:last-child {
+  border-right: none;
+}
+.ns-term-segment-btn.is-active {
+  background: rgba(0, 212, 170, 0.14);
+  color: var(--ns-accent);
+}
+
+.ns-term-error {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--ns-danger);
+  border-left: 2px solid var(--ns-danger);
+  padding-left: 10px;
+}
+
+.ns-term-creds {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--ns-border);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--ns-text-3);
+}
+.ns-term-creds-title {
+  color: var(--ns-text-2);
+  margin-bottom: 4px;
+}

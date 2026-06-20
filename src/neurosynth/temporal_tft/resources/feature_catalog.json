@@ -1,0 +1,10 @@
+{
+  "modifiable": [
+    "total_drug_burden_score",
+    "sleep_efficiency",
+    "step_count_daily",
+    "gait_speed",
+    "nfl_plasma",
+    "csf_ratio"
+  ]
+}

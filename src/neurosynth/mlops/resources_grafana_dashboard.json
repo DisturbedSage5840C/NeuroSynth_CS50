@@ -1,0 +1,11 @@
+{
+  "title": "NeuroSynth Production",
+  "panels": [
+    {"title": "Request rate and error rate (RED)", "type": "timeseries"},
+    {"title": "GPU utilization per model", "type": "timeseries"},
+    {"title": "End-to-end pipeline latency P50/P95/P99", "type": "timeseries"},
+    {"title": "Data drift scores", "type": "timeseries"},
+    {"title": "Prediction calibration over time", "type": "timeseries"},
+    {"title": "Active patient analyses", "type": "stat"}
+  ]
+}

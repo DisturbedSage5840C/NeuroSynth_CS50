@@ -1,0 +1,6 @@
+{
+  "ad_genes": ["APOE", "APP", "PSEN1", "PSEN2", "TREM2", "BIN1", "CLU", "PICALM", "ABCA7", "CR1"],
+  "pd_genes": ["SNCA", "LRRK2", "PARK7", "PINK1", "GBA1", "PRKN", "VPS35", "DJ1", "ATP13A2", "FBXO7"],
+  "als_genes": ["SOD1", "TARDBP", "FUS", "C9orf72", "ATXN2", "OPTN", "TBK1", "NEK1", "VCP", "SQSTM1"],
+  "shared_neuro": ["MAPT", "GRN", "TARDBP", "VCP", "UBQLN2", "C9orf72", "TBK1", "CHMP2B", "ANXA11", "HNRNPA1"]
+}

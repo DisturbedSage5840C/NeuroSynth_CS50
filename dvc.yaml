@@ -1,0 +1,231 @@
+stages:
+  # Stage 1: Load and validate the clinical CSV
+  load_csv:
+    cmd: >-
+      python -c "
+      from neurosynth.data.feature_engineering import FeatureMatrixBuilder;
+      builder = FeatureMatrixBuilder();
+      matrix = builder.build_from_csv('neurological_disease_data.csv');
+      matrix.to_parquet('data/processed/features_tier1.parquet', index=False);
+      print(f'Saved {len(matrix)} rows')
+      "
+    deps:
+      - neurological_disease_data.csv
+      - src/neurosynth/data/schema.py
+      - src/neurosynth/data/feature_engineering.py
+    outs:
+      - data/processed/features_tier1.parquet
+
+  # Stage 2: Run quality checks on loaded data
+  quality_check:
+    cmd: >-
+      python -c "
+      import pandas as pd;
+      from neurosynth.data.quality import DataQualityAgent;
+      import json;
+      df = pd.read_parquet('data/processed/features_tier1.parquet');
+      agent = DataQualityAgent(reference_df=df);
+      report = agent.assess(df, batch_id='initial_load');
+      with open('data/processed/quality_report.json', 'w') as f:
+          json.dump(report.to_dict(), f, indent=2);
+      print(f'Quality score: {report.overall_quality_score:.4f}')
+      "
+    deps:
+      - data/processed/features_tier1.parquet
+      - src/neurosynth/data/quality.py
+    outs:
+      - data/processed/quality_report.json
+    metrics:
+      - data/processed/quality_report.json:
+          cache: false
+
+  # Stage 3: Compute derived features
+  feature_engineering:
+    cmd: >-
+      python -c "
+      import pandas as pd;
+      from neurosynth.data.feature_engineering import FeatureMatrixBuilder;
+      df = pd.read_parquet('data/processed/features_tier1.parquet');
+      enriched = FeatureMatrixBuilder.compute_derived_features(df);
+      enriched.to_parquet('data/processed/features_enriched.parquet', index=False);
+      coverage = FeatureMatrixBuilder.tier_coverage(enriched);
+      import json;
+      with open('data/processed/tier_coverage.json', 'w') as f:
+          json.dump(coverage, f, indent=2);
+      print(f'Features: {len(enriched.columns)}, Rows: {len(enriched)}')
+      "
+    deps:
+      - data/processed/features_tier1.parquet
+      - src/neurosynth/data/feature_engineering.py
+    outs:
+      - data/processed/features_enriched.parquet
+    metrics:
+      - data/processed/tier_coverage.json:
+          cache: false
+
+  # Stage 4: Train disease classifier on processed data
+  train_classifier:
+    cmd: >-
+      python -c "
+      from backend.disease_classifier import DiseaseClassifier;
+      clf = DiseaseClassifier();
+      clf.train();
+      print('Disease classifier trained')
+      "
+    deps:
+      - neurological_disease_data.csv
+      - backend/disease_classifier.py
+    outs:
+      - models/disease_clf.pkl
+      - models/disease_le.pkl
+      - models/disease_features.pkl
+
+  # Stage 5: Pretrain full model suite
+  pretrain:
+    cmd: python scripts/pretrain.py --dataset neurological_disease_data.csv --models-dir models
+    deps:
+      - neurological_disease_data.csv
+      - scripts/pretrain.py
+      - backend/data_pipeline.py
+      - backend/biomarker_model.py
+      - backend/temporal_model.py
+      - backend/causal_engine.py
+    outs:
+      - models/scaler.pkl
+      - models/rf_model.pkl
+      - models/gb_model.pkl
+      - models/lr_model.pkl
+      - models/lstm_model.pt
+      - models/causal_graph.npy
+      - models/model_manifest.json
+
+  # ── v5 stages (real data pipeline) ────────────────────────────────────────
+
+  query_gnomad:
+    cmd: >
+      PYTHONPATH=.:src python scripts/data/v5/query_gnomad.py
+      --out data/raw/gnomad_neuro_variants.csv
+    deps:
+      - scripts/data/v5/query_gnomad.py
+    outs:
+      - data/raw/gnomad_neuro_variants.csv:
+          persist: true
+
+  merge_v5:
+    cmd: python scripts/data/v5/merge_v5.py
+    deps:
+      - scripts/data/v5/merge_v5.py
+      - scripts/data/v5/schema.py
+      - data/raw/
+      - data/raw/gnomad_neuro_variants.csv
+    outs:
+      - data/real_v5.parquet
+
+  ctgan_augment:
+    cmd: python scripts/data/v5/ctgan_augment.py --input data/real_v5.parquet --output data/real_v5_augmented.parquet
+    deps:
+      - scripts/data/v5/ctgan_augment.py
+      - scripts/data/v5/schema.py
+      - data/real_v5.parquet
+    outs:
+      - data/real_v5_augmented.parquet
+
+  tune_fusion_weights:
+    cmd: python scripts/tune_fusion_weights.py --data data/real_v5_augmented.parquet --out models/ensemble_v5/fusion_weights.json
+    deps:
+      - scripts/tune_fusion_weights.py
+      - scripts/data/v5/schema.py
+      - data/real_v5_augmented.parquet
+    outs:
+      - models/ensemble_v5/fusion_weights.json
+
+  build_pubmed_corpus:
+    cmd: python scripts/data/v5/build_pubmed_corpus.py --max 10000 --out data/pubmed_corpus.jsonl
+    deps:
+      - scripts/data/v5/build_pubmed_corpus.py
+    outs:
+      - data/pubmed_corpus.jsonl
+
+  embed_corpus:
+    cmd: python scripts/data/v5/embed_corpus.py --input data/pubmed_corpus.jsonl
+    deps:
+      - scripts/data/v5/embed_corpus.py
+      - data/pubmed_corpus.jsonl
+
+  train_ensemble_v5:
+    cmd: python scripts/train_v5.py --data data/real_v5_augmented.parquet --out models/ensemble_v5
+    deps:
+      - scripts/train_v5.py
+      - scripts/data/v5/schema.py
+      - src/neurosynth/models/calibrated_ensemble.py
+      - data/real_v5_augmented.parquet
+    outs:
+      - models/ensemble_v5/ensemble/
+      - models/ensemble_v5/disease_classifier_v5.pkl
+      - models/ensemble_v5/disease_label_encoder_v5.pkl
+    metrics:
+      - models/ensemble_v5/model_manifest_v5.json:
+          cache: false
+
+  train_tft_v5:
+    cmd: >
+      PYTHONPATH=.:src python scripts/train_tft_v5.py
+      --data data/real_v5_augmented.parquet
+      --out  models/ensemble_v5/tft_v5
+      --seq-len 6 --max-epochs 20 --batch-size 64
+    deps:
+      - scripts/train_tft_v5.py
+      - src/neurosynth/temporal_tft/model.py
+      - data/real_v5_augmented.parquet
+    outs:
+      - models/ensemble_v5/tft_v5/:
+          persist: true
+    metrics:
+      - models/ensemble_v5/tft_v5/tft_manifest.json:
+          cache: false
+
+  train_cross_attention:
+    cmd: >
+      PYTHONPATH=.:src python -c "
+      import json, sys, pathlib;
+      fw = pathlib.Path('models/ensemble_v5/fusion_weights.json');
+      weights = json.loads(fw.read_text()) if fw.exists() else {'tabular':0.40,'gnn':0.20,'genomic':0.15,'tft':0.15,'causal':0.10};
+      out = pathlib.Path('models/ensemble_v5/cross_attention_config.json');
+      out.write_text(json.dumps({'weights': weights, 'method': 'optuna', 'n_modalities': 5}, indent=2));
+      print('Cross-attention config written →', out);
+      "
+    deps:
+      - src/neurosynth/models/fusion.py
+      - models/ensemble_v5/fusion_weights.json
+    outs:
+      - models/ensemble_v5/cross_attention_config.json
+
+  validate:
+    cmd: python scripts/validate_success_metrics.py --manifest models/ensemble_v5/model_manifest_v5.json
+    deps:
+      - scripts/validate_success_metrics.py
+      - models/ensemble_v5/model_manifest_v5.json
+    metrics:
+      - models/ensemble_v5/model_manifest_v5.json:
+          cache: false
+
+  release_gate:
+    cmd: >
+      python -c "
+      import json, sys;
+      m = json.load(open('models/ensemble_v5/model_manifest_v5.json'));
+      auc = m.get('binary_metrics', {}).get('test_roc_auc', 0);
+      gate = m.get('auc_gate', {}).get('hard', 0.92);
+      print(f'AUC={auc:.4f}  hard_gate={gate}');
+      sys.exit(0 if auc >= gate else 1);
+      "
+    deps:
+      - models/ensemble_v5/model_manifest_v5.json
+
+plots:
+  - data/processed/quality_report.json:
+      x: batch_id
+      y: overall_quality_score
+  - models/ensemble_v5/model_manifest_v5.json:
+      x: version
+      y: binary_metrics.test_roc_auc

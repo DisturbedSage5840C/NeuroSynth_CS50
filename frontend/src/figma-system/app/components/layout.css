@@ -1,0 +1,112 @@
+/* App shell layout — Neural Interface nav rail */
+
+.nav-rail {
+  width: 11rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0.5rem;
+  gap: 0.125rem;
+  background: var(--sidebar);
+  border-right: 1px solid var(--sidebar-border);
+  flex-shrink: 0;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.nav-logo-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  color: var(--accent-primary);
+}
+
+.nav-logo-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.nav-logo-sub {
+  font-size: 0.5625rem;
+  color: var(--text-tertiary);
+}
+
+.nav-divider {
+  height: 1px;
+  margin: 0.5rem 0.5rem;
+  background: var(--sidebar-border);
+}
+
+.nav-section-label {
+  padding: 0 0.5rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.nav-bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+/* NavItem — active / inactive states handled via className in JSX */
+.nav-item {
+  width: 100%;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0 0.75rem;
+  font-size: 0.75rem;
+  text-decoration: none;
+  transition: color 0.15s, background-color 0.15s;
+}
+.nav-item-active {
+  color: var(--accent-primary);
+  background: rgba(0, 212, 255, 0.08);
+}
+.nav-item-inactive {
+  color: var(--text-tertiary);
+}
+.nav-item-inactive:hover {
+  color: var(--text-primary);
+  background: var(--secondary);
+}
+
+.nav-logout {
+  width: 100%;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0 0.75rem;
+  font-size: 0.75rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  transition: color 0.15s, background-color 0.15s;
+}
+.nav-logout:hover {
+  color: var(--text-primary);
+  background: var(--secondary);
+}

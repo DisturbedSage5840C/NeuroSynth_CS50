@@ -1,0 +1,24 @@
+{
+  "git.showIgnored": false,
+  "files.exclude": {
+    "**/.venv": true,
+    "**/.venv312": true,
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/.pytest_cache": true,
+    "**/.coverage*": true
+  },
+  "search.exclude": {
+    "**/.venv/**": true,
+    "**/.venv312/**": true,
+    "**/__pycache__/**": true,
+    "**/.pytest_cache/**": true
+  },
+  "files.watcherExclude": {
+    "**/.venv/**": true,
+    "**/.venv312/**": true,
+    "**/__pycache__/**": true,
+    "**/.pytest_cache/**": true
+  },
+  "azureTerraform.checkTerraformCmd": false
+}

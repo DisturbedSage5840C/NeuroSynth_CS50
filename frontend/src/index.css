@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface: 210 55% 8%;
+  --elevated: 210 40% 12%;
+  --line: 200 20% 28%;
+  --text: 195 35% 92%;
+  --muted: 197 17% 68%;
+  --primary: 186 70% 44%;
+  --accent: 198 93% 64%;
+  --success: 150 72% 40%;
+  --warning: 38 92% 56%;
+  --danger: 3 77% 56%;
+
+  --radius-panel: 16px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Figma design-system aliases */
+  --background: #0a0a0f;
+  --foreground: #e4e4e7;
+  --card: #111118;
+  --card-foreground: #e4e4e7;
+  --muted-foreground: #71717a;
+  --primary-foreground: #0a0a0f;
+  --secondary: #1e1e2a;
+  --border: rgba(255, 255, 255, 0.08);
+  --risk-critical: #ef4444;
+  --risk-critical-bg: rgba(239, 68, 68, 0.12);
+  --risk-high: #f97316;
+  --risk-high-bg: rgba(249, 115, 22, 0.12);
+  --risk-moderate: #eab308;
+  --risk-moderate-bg: rgba(234, 179, 8, 0.12);
+  --risk-low: #22c55e;
+  --risk-low-bg: rgba(34, 197, 94, 0.12);
+  --chart-3: #06b6d4;
+  --chart-4: #8b5cf6;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 20% 20%, hsl(184 70% 16%), transparent 38%), radial-gradient(circle at 90% 15%, hsl(214 60% 16%), transparent 35%), hsl(var(--surface));
+  color: hsl(var(--text));
+  font-family: "IBM Plex Sans", "Source Sans 3", sans-serif;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: hsl(var(--accent));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  button {
+    display: none !important;
+  }
+
+  .bg-card,
+  .bg-secondary,
+  .bg-background {
+    background: #ffffff !important;
+  }
+
+  .text-foreground,
+  .text-muted-foreground {
+    color: #111111 !important;
+  }
+
+  .border,
+  .border-border {
+    border-color: #cfcfcf !important;
+  }
+}

@@ -1,0 +1,99 @@
+name: neurosynth-qa
+
+on:
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_run:
+    workflows: ["neurosynth-cicd"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  unit-and-integration:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e '.[test]'
+
+      - name: Run release gate checks
+        env:
+          NEUROSYNTH_APP_ENV: dev
+          NEUROSYNTH_JWT_SECRET: ci-release-gate-secret-not-for-prod
+          NEUROSYNTH_PATIENT_HASH_SECRET: ci-test-patient-secret
+          NEUROSYNTH_POSTGRES_DSN: postgresql://postgres:postgres@localhost:5432/neurosynth
+          NEUROSYNTH_ALLOWED_ORIGINS: https://api.test.local
+          NEUROSYNTH_REDIS_URL: redis://localhost:6379/0
+        run: python scripts/release_gate.py
+
+      - name: Run unit and integration tests (fast subset)
+        env:
+          PYTHONPATH: src
+        run: |
+          pytest -q tests/unit tests/integration \
+            --cov=src/neurosynth \
+            --cov-report=term-missing \
+            --cov-fail-under=80
+
+  model-validation-nightly:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e '.[test]'
+
+      - name: Run model validation suite
+        env:
+          PYTHONPATH: src
+        run: pytest -q tests/model_validation
+
+  e2e-on-staging:
+    if: github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: tests/e2e/package.json
+
+      - name: Install E2E dependencies
+        run: |
+          npm --prefix tests/e2e install
+          npx --prefix tests/e2e playwright install --with-deps chromium
+
+      - name: Run Playwright E2E on staging
+        env:
+          E2E_BASE_URL: https://staging.neurosynth.health
+        run: npm --prefix tests/e2e run test

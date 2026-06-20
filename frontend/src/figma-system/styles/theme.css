@@ -1,0 +1,223 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 14px;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+
+  /* ── Neural Interface backgrounds ──────────────────────────────────── */
+  --bg-base:     #060b18;   /* deep space — page background              */
+  --bg-surface:  #0d1629;   /* card surfaces                             */
+  --bg-elevated: #162035;   /* modals, popovers                          */
+  --bg-subtle:   #1c2a42;   /* hover states, subtle sections             */
+
+  /* ── Glass panels ───────────────────────────────────────────────────── */
+  --glass-bg:     rgba(13, 22, 41, 0.75);
+  --glass-border: rgba(0, 212, 255, 0.10);
+  --glass-blur:   12px;
+
+  /* ── Accent — electric cyan (clinical precision) ─────────────────── */
+  --accent-primary:     #00d4ff;
+  --accent-primary-dim: #007a99;
+  --accent-glow:        0 0 20px rgba(0, 212, 255, 0.18);
+
+  /* ── Risk colors ────────────────────────────────────────────────────── */
+  --risk-low:      #10b981;  /* emerald */
+  --risk-moderate: #f59e0b;  /* amber   */
+  --risk-high:     #ef4444;  /* red     */
+  --risk-critical: #dc2626;  /* deep red */
+  --risk-low-bg:      rgba(16, 185, 129, 0.12);
+  --risk-moderate-bg: rgba(245, 158, 11, 0.12);
+  --risk-high-bg:     rgba(239, 68,  68, 0.12);
+  --risk-critical-bg: rgba(220, 38,  38, 0.12);
+  --risk-info:        #3b82f6;
+  --risk-info-bg:     rgba(59, 130, 246, 0.12);
+
+  /* ── Disease-specific semantic colors ──────────────────────────────── */
+  --color-ad:  #818cf8;   /* indigo  — Alzheimer's  */
+  --color-pd:  #34d399;   /* teal    — Parkinson's  */
+  --color-ms:  #fb923c;   /* orange  — MS           */
+  --color-ep:  #a78bfa;   /* violet  — Epilepsy     */
+  --color-als: #f87171;   /* rose    — ALS          */
+  --color-hd:  #fbbf24;   /* amber   — Huntington's */
+
+  /* ── Text ───────────────────────────────────────────────────────────── */
+  --text-primary:   #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-tertiary:  #4b6284;
+  --text-data:      #00d4ff;
+
+  /* ── Confidence/uncertainty ─────────────────────────────────────────── */
+  --confidence-high:   #22c55e;
+  --confidence-medium: #eab308;
+  --confidence-low:    #ef4444;
+
+  /* ── Tailwind / shadcn token layer ─────────────────────────────────── */
+  --background:         var(--bg-base);
+  --foreground:         var(--text-primary);
+  --card:               var(--bg-surface);
+  --card-foreground:    var(--text-primary);
+  --card-elevated:      var(--bg-elevated);
+  --popover:            var(--bg-elevated);
+  --popover-foreground: var(--text-primary);
+  --primary:            var(--accent-primary);
+  --primary-foreground: #020b14;
+  --secondary:          var(--bg-subtle);
+  --secondary-foreground: var(--text-secondary);
+  --muted:              var(--bg-surface);
+  --muted-foreground:   var(--text-secondary);
+  --accent:             var(--bg-subtle);
+  --accent-foreground:  var(--text-primary);
+  --destructive:        #ef4444;
+  --destructive-foreground: #ffffff;
+  --border:       var(--glass-border);
+  --border-strong: rgba(0, 212, 255, 0.20);
+  --input:              rgba(0, 212, 255, 0.06);
+  --input-background:   var(--bg-elevated);
+  --switch-background:  var(--bg-subtle);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: var(--accent-primary);
+
+  /* ── Charts ─────────────────────────────────────────────────────────── */
+  --chart-1: var(--accent-primary);   /* cyan   */
+  --chart-2: var(--color-pd);         /* teal   */
+  --chart-3: var(--color-ms);         /* orange */
+  --chart-4: var(--color-ep);         /* violet */
+  --chart-5: var(--color-hd);         /* amber  */
+
+  --radius: 0.5rem;
+
+  /* ── Sidebar ─────────────────────────────────────────────────────────── */
+  --sidebar:                  #060b18;
+  --sidebar-foreground:       var(--text-primary);
+  --sidebar-primary:          var(--accent-primary);
+  --sidebar-primary-foreground: #020b14;
+  --sidebar-accent:           var(--bg-surface);
+  --sidebar-accent-foreground: var(--text-primary);
+  --sidebar-border:           rgba(0, 212, 255, 0.06);
+  --sidebar-ring:             var(--accent-primary);
+}
+
+.dark {
+  /* Already dark-first */
+}
+
+@theme inline {
+  --font-family-sans: var(--font-sans);
+  --font-family-mono: var(--font-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-card-elevated: var(--card-elevated);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-risk-critical: var(--risk-critical);
+  --color-risk-critical-bg: var(--risk-critical-bg);
+  --color-risk-high: var(--risk-high);
+  --color-risk-high-bg: var(--risk-high-bg);
+  --color-risk-moderate: var(--risk-moderate);
+  --color-risk-moderate-bg: var(--risk-moderate-bg);
+  --color-risk-low: var(--risk-low);
+  --color-risk-low-bg: var(--risk-low-bg);
+  --color-risk-info: var(--risk-info);
+  --color-risk-info-bg: var(--risk-info-bg);
+  --color-confidence-high: var(--confidence-high);
+  --color-confidence-medium: var(--confidence-medium);
+  --color-confidence-low: var(--confidence-low);
+  --color-ad: var(--color-ad);
+  --color-pd: var(--color-pd);
+  --color-ms: var(--color-ms);
+  --color-ep: var(--color-ep);
+  --color-als: var(--color-als);
+  --color-hd: var(--color-hd);
+  --color-accent-primary: var(--accent-primary);
+  --color-text-data: var(--text-data);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(0, 212, 255, 0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(129, 140, 248, 0.04) 0%, transparent 50%);
+  }
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1 { font-size: var(--text-2xl); font-weight: 600; line-height: 1.3; letter-spacing: -0.02em; }
+  h2 { font-size: var(--text-xl);  font-weight: 600; line-height: 1.4; letter-spacing: -0.01em; }
+  h3 { font-size: var(--text-lg);  font-weight: 500; line-height: 1.5; }
+  h4 { font-size: var(--text-base); font-weight: 500; line-height: 1.5; }
+  label  { font-size: var(--text-sm); font-weight: 500; line-height: 1.5; }
+  button { font-size: var(--text-sm); font-weight: 500; line-height: 1.5; }
+  input  { font-size: var(--text-sm); font-weight: 400; line-height: 1.5; }
+}
+
+/* ── Utility classes used by Neural Interface components ──────────────── */
+@layer utilities {
+  .glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    backdrop-filter: blur(var(--glass-blur));
+  }
+
+  .glow-cyan {
+    box-shadow: var(--accent-glow);
+  }
+
+  .text-data {
+    color: var(--text-data);
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .section-heading {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+}

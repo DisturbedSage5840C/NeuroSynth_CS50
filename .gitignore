@@ -1,0 +1,16 @@
+not_in_github/
+__pycache__/
+*.pyc
+.env
+*.pkl
+*.pt
+*.parquet
+models/
+.venv/
+node_modules/
+frontend/dist/
+static/
+.dvc/
+*.dvc
+.DS_Store
+Thumbs.db

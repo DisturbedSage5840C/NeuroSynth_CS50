@@ -1,0 +1,324 @@
+/* v3 design system shared styles */
+
+/* ── GlassCard ── */
+.glass-card {
+  border-radius: 1rem;
+  padding: 1.25rem;
+  background: rgba(13, 22, 41, 0.75);
+  border: 1px solid rgba(0, 212, 255, 0.1);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.glass-card-glow {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.08);
+}
+
+/* ── DataBadge ── */
+.data-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2em;
+  padding: 0.2em 0.55em;
+  border-radius: 0.375rem;
+  background: rgba(0, 212, 255, 0.07);
+  border: 1px solid rgba(0, 212, 255, 0.12);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+.data-badge-value {
+  color: var(--accent-primary);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.data-badge-unit {
+  color: var(--text-tertiary);
+  font-size: 0.65rem;
+}
+
+/* ── RiskChip ── */
+.risk-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.15em 0.6em;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+}
+.risk-chip-prob {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  opacity: 0.85;
+}
+.risk-chip-ad  { color: var(--color-ad);  background: rgba(129,140,248,0.08); }
+.risk-chip-pd  { color: var(--color-pd);  background: rgba(52, 211,153,0.08); }
+.risk-chip-ms  { color: var(--color-ms);  background: rgba(251,146,60, 0.08); }
+.risk-chip-ep  { color: var(--color-ep);  background: rgba(167,139,250,0.08); }
+.risk-chip-als { color: var(--color-als); background: rgba(248,113,113,0.08); }
+.risk-chip-hd  { color: var(--color-hd);  background: rgba(251,191,36, 0.08); }
+.risk-chip-default { color: var(--accent-primary); background: rgba(0,212,255,0.08); }
+
+/* ── 3-arc gauge (RiskScoreGaugeV3) ── */
+.gauge-wrap { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+.gauge-svg  { overflow: visible; }
+.gauge-center { text-anchor: middle; dominant-baseline: middle; }
+.gauge-pct   { font-family: var(--font-mono); font-weight: 700; }
+.gauge-level { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.1em; }
+.gauge-meta  { display: flex; gap: 1rem; font-size: 0.7rem; color: var(--text-tertiary); }
+.gauge-meta-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; display: inline-block; margin-right: 0.3rem; }
+
+/* ── SHAP waterfall v3 ── */
+.shap-significance-badge {
+  display: inline-block;
+  padding: 0.1em 0.45em;
+  border-radius: 0.3rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.shap-sig-high   { background: rgba(239,68,68,0.15);  color: #f87171; }
+.shap-sig-medium { background: rgba(245,158,11,0.15); color: #fbbf24; }
+.shap-sig-low    { background: rgba(100,116,139,0.15);color: #94a3b8; }
+.shap-causal-dot {
+  width: 0.45rem; height: 0.45rem; border-radius: 50%;
+  background: var(--accent-primary); flex-shrink: 0;
+}
+
+/* ── Trajectory v3 disease tabs ── */
+.traj-tabs  { display: flex; gap: 0.375rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+.traj-tab   {
+  padding: 0.25rem 0.625rem;
+  border-radius: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-tertiary);
+  transition: all 0.15s;
+}
+.traj-tab:hover  { color: var(--text-primary); }
+.traj-tab-active {
+  background: rgba(0,212,255,0.08);
+  border-color: rgba(0,212,255,0.2);
+  color: var(--accent-primary);
+}
+.traj-ref-band { opacity: 0.12; }
+
+/* ── Disease color classes (used to avoid dynamic inline styles) ── */
+.dc-ad  { color: var(--color-ad);  background: rgba(129,140,248,0.1); }
+.dc-pd  { color: var(--color-pd);  background: rgba(52, 211,153,0.1); }
+.dc-ms  { color: var(--color-ms);  background: rgba(251,146,60, 0.1); }
+.dc-ep  { color: var(--color-ep);  background: rgba(167,139,250,0.1); }
+.dc-als { color: var(--color-als); background: rgba(248,113,113,0.1); }
+.dc-hd  { color: var(--color-hd);  background: rgba(251,191,36, 0.1); }
+.dc-default { color: var(--accent-primary); background: rgba(0,212,255,0.1); }
+
+.dc-text-ad  { color: var(--color-ad);  }
+.dc-text-pd  { color: var(--color-pd);  }
+.dc-text-ms  { color: var(--color-ms);  }
+.dc-text-ep  { color: var(--color-ep);  }
+.dc-text-als { color: var(--color-als); }
+.dc-text-hd  { color: var(--color-hd);  }
+.dc-text-hl  { color: #64748b; }
+.dc-text-default { color: var(--accent-primary); }
+
+.dc-bg-ad  { background: var(--color-ad);  }
+.dc-bg-pd  { background: var(--color-pd);  }
+.dc-bg-ms  { background: var(--color-ms);  }
+.dc-bg-ep  { background: var(--color-ep);  }
+.dc-bg-als { background: var(--color-als); }
+.dc-bg-hd  { background: var(--color-hd);  }
+.dc-bg-hl  { background: #64748b; }
+.dc-bg-default { background: var(--accent-primary); }
+
+/* Legend swatch */
+.legend-swatch {
+  width: 0.5rem; height: 0.5rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+/* Progress bar track */
+.progress-track {
+  height: 0.375rem;
+  width: 100%;
+  border-radius: 9999px;
+  background: var(--bg-subtle);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+}
+
+/* ── Page sections ── */
+.page-root { flex: 1; overflow-y: auto; padding: 1.5rem; background: var(--bg-base); }
+.page-header { margin-bottom: 1.5rem; }
+.page-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+.page-subtitle { font-size: 0.8rem; color: var(--text-tertiary); margin-top: 0.25rem; }
+.page-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.page-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.page-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+
+/* Status chips */
+.status-chip {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.2em 0.6em; border-radius: 9999px;
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.05em;
+}
+.status-chip-active  { background: rgba(16,185,129,0.12); color: #34d399; }
+.status-chip-pending { background: rgba(245,158,11,0.12); color: #fbbf24; }
+.status-chip-error   { background: rgba(239,68,68,0.12);  color: #f87171; }
+.status-dot { width: 0.375rem; height: 0.375rem; border-radius: 50%; background: currentColor; }
+
+/* ── ClinicalInput ── */
+.ci-root     { display: flex; flex-direction: column; gap: 0.3rem; }
+.ci-label    { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-tertiary); }
+.ci-input-wrap { display: flex; align-items: center; gap: 0; }
+.ci-input    {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 212, 255, 0.12);
+  background: rgba(0, 212, 255, 0.04);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.ci-input:focus            { border-color: rgba(0,212,255,0.35); box-shadow: 0 0 0 2px rgba(0,212,255,0.08); }
+.ci-input-warn             { border-color: rgba(245,158,11,0.4) !important; }
+.ci-unit     { padding: 0 0.6rem; font-size: 0.68rem; font-family: var(--font-mono); color: var(--text-tertiary); background: rgba(0,0,0,0.2); border: 1px solid rgba(0,212,255,0.1); border-left: none; border-radius: 0 0.5rem 0.5rem 0; height: 2.1rem; display: flex; align-items: center; }
+.ci-hint     { font-size: 0.65rem; color: var(--text-tertiary); }
+.ci-hint-warn { color: #fbbf24; }
+
+/* ── SectionHeading ── */
+.sh-root     { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem; }
+.sh-label    { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-tertiary); white-space: nowrap; flex-shrink: 0; }
+.sh-rule     { flex: 1; height: 1px; background: var(--border); }
+.sh-action   { flex-shrink: 0; }
+
+/* ── PulseIndicator ── */
+.pulse-root  { display: inline-flex; align-items: center; gap: 0.4rem; }
+.pulse-dot   { position: relative; width: 0.5rem; height: 0.5rem; border-radius: 50%; flex-shrink: 0; }
+.pulse-dot::before {
+  content: '';
+  position: absolute;
+  inset: -0.25rem;
+  border-radius: 50%;
+  opacity: 0;
+  animation: pulse-ring 1.8s ease-out infinite;
+  background: currentColor;
+}
+@keyframes pulse-ring {
+  0%   { transform: scale(0.5); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.pulse-live  { background: var(--risk-low); color: var(--risk-low); }
+.pulse-idle  { background: var(--text-tertiary); color: var(--text-tertiary); animation: none; }
+.pulse-error { background: var(--risk-high); color: var(--risk-high); }
+.pulse-label { font-size: 0.7rem; color: var(--text-secondary); }
+
+/* ── TimelineItem ── */
+.tl-item        { display: flex; gap: 0.75rem; }
+.tl-item-last .tl-line { display: none; }
+.tl-line-col    { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 1rem; }
+.tl-dot         { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--accent-primary); border: 2px solid var(--bg-surface); flex-shrink: 0; margin-top: 0.3rem; }
+.tl-line        { width: 1px; flex: 1; background: var(--border); margin-top: 0.25rem; min-height: 1.5rem; }
+.tl-content     { flex: 1; padding-bottom: 1.25rem; }
+.tl-header      { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.2rem; }
+.tl-date        { font-size: 0.65rem; font-family: var(--font-mono); color: var(--text-tertiary); }
+.tl-badge       { }
+.tl-title       { font-size: 0.8rem; font-weight: 500; color: var(--text-primary); }
+.tl-desc        { font-size: 0.72rem; color: var(--text-tertiary); margin-top: 0.2rem; line-height: 1.5; }
+
+/* ── CytoscapeGraph ── */
+.cyto-root   { position: relative; }
+.cyto-svg    { display: block; }
+.cyto-empty  { display: flex; align-items: center; justify-content: center; height: 5rem; font-size: 0.75rem; color: var(--text-tertiary); }
+.cyto-legend { display: flex; gap: 1rem; margin-top: 0.5rem; }
+.cyto-leg-item  { font-size: 0.65rem; color: var(--text-tertiary); display: flex; align-items: center; gap: 0.3rem; }
+.cyto-leg-item::before { content: ''; display: inline-block; width: 1.5rem; height: 1px; }
+.cyto-leg-positive::before { background: var(--risk-low); }
+.cyto-leg-negative::before { background: var(--risk-high); }
+
+/* ── TrajectoryChart chart area ── */
+.traj-chart-area { height: 11.25rem; }
+
+/* ── TrajectoryChart intervention sliders ── */
+.traj-intervention { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+.traj-intervention-title { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 0.5rem; }
+.traj-slider-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.4rem; }
+.traj-slider-label { font-size: 0.7rem; color: var(--text-secondary); width: 6rem; flex-shrink: 0; }
+.traj-slider { flex: 1; accent-color: var(--accent-primary); }
+.traj-slider-val { font-size: 0.68rem; font-family: var(--font-mono); color: var(--accent-primary); width: 2rem; text-align: right; flex-shrink: 0; }
+
+/* ── BrainVisualization3D v2 ── */
+.brain-root       { position: relative; background: #060b18; border-radius: 0.75rem; overflow: hidden; }
+.brain-canvas-wrap { width: 100%; height: 100%; }
+.brain-count      { position: absolute; bottom: 0.5rem; right: 0.75rem; font-size: 0.62rem; font-family: var(--font-mono); color: var(--text-tertiary); pointer-events: none; }
+
+/* Tooltip rendered via @react-three/drei Html */
+.brain-tooltip    { background: rgba(6,11,24,0.9); border: 1px solid rgba(0,212,255,0.2); border-radius: 0.375rem; padding: 0.3rem 0.5rem; display: flex; gap: 0.4rem; align-items: baseline; pointer-events: none; white-space: nowrap; }
+.brain-tooltip-name { font-size: 0.65rem; font-family: var(--font-mono); color: var(--text-secondary); }
+.brain-tooltip-val  { font-size: 0.65rem; font-family: var(--font-mono); font-weight: 600; }
+.brain-tooltip-pos  { color: #f87171; }
+.brain-tooltip-neg  { color: #34d399; }
+
+/* Selected region detail panel */
+.brain-detail     { position: absolute; bottom: 0.75rem; left: 0.75rem; background: rgba(13,22,41,0.9); border: 1px solid rgba(0,212,255,0.15); border-radius: 0.625rem; padding: 0.625rem 0.875rem; max-width: 13rem; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.brain-detail-name  { font-size: 0.75rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.15rem; }
+.brain-detail-lobe  { font-size: 0.62rem; color: var(--text-tertiary); text-transform: capitalize; margin-bottom: 0.35rem; }
+.brain-detail-features { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+.brain-detail-feature-chip { font-size: 0.6rem; font-family: var(--font-mono); padding: 0.1em 0.4em; border-radius: 0.25rem; background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.12); color: var(--accent-primary); }
+.brain-detail-close { position: absolute; top: 0.4rem; right: 0.5rem; background: transparent; border: none; color: var(--text-tertiary); font-size: 1rem; cursor: pointer; line-height: 1; padding: 0; }
+.brain-detail-close:hover { color: var(--text-primary); }
+
+/* ── CohortStats ── */
+.cohort-kpi-row       { display: flex; gap: 1.5rem; margin-bottom: 1.25rem; }
+.cohort-section-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 0.6rem; }
+.cohort-prevalence-list { display: flex; flex-direction: column; gap: 0.45rem; }
+.cohort-prev-row      { display: flex; align-items: center; gap: 0.75rem; }
+.cohort-prev-name     { font-size: 0.72rem; color: var(--text-secondary); width: 10rem; flex-shrink: 0; }
+.cohort-prev-pct      { font-size: 0.7rem; font-family: var(--font-mono); font-weight: 600; width: 2.5rem; text-align: right; flex-shrink: 0; }
+
+/* ── LiteraturePanel ── */
+.lit-panel            { display: flex; flex-direction: column; gap: 0.75rem; }
+.lit-search-row       { display: flex; gap: 0.5rem; }
+.lit-input            { flex: 1; padding: 0.5rem 0.75rem; border-radius: 0.5rem; border: 1px solid rgba(0,212,255,0.15); background: rgba(0,212,255,0.04); color: var(--text-primary); font-size: 0.8rem; outline: none; }
+.lit-input:focus      { border-color: rgba(0,212,255,0.35); }
+.lit-search-btn       { padding: 0.5rem 1rem; border-radius: 0.5rem; background: rgba(0,212,255,0.12); border: 1px solid rgba(0,212,255,0.2); color: var(--accent-primary); font-size: 0.75rem; cursor: pointer; font-weight: 600; }
+.lit-search-btn:hover { background: rgba(0,212,255,0.2); }
+.lit-search-btn:disabled { opacity: 0.5; cursor: default; }
+.lit-error            { font-size: 0.72rem; color: var(--risk-medium); }
+.lit-empty            { font-size: 0.72rem; color: var(--text-tertiary); }
+.lit-results          { display: flex; flex-direction: column; gap: 0.75rem; }
+.lit-card             { padding: 0.875rem; border-radius: 0.625rem; background: rgba(13,22,41,0.6); border: 1px solid rgba(0,212,255,0.08); }
+.lit-card-header      { display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.25rem; }
+.lit-card-title       { font-size: 0.78rem; font-weight: 600; color: var(--accent-primary); text-decoration: none; flex: 1; line-height: 1.4; }
+.lit-card-title:hover { text-decoration: underline; }
+.lit-sim-badge        { font-size: 0.62rem; font-family: var(--font-mono); padding: 0.15em 0.5em; border-radius: 999px; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2); color: var(--accent-primary); white-space: nowrap; flex-shrink: 0; }
+.lit-card-meta        { font-size: 0.65rem; color: var(--text-tertiary); font-family: var(--font-mono); margin-bottom: 0.4rem; }
+.lit-card-abstract    { font-size: 0.72rem; color: var(--text-secondary); line-height: 1.6; }
+
+/* ── BrainVisualization2D (mobile fallback) ── */
+.brain2d-root   { width: 100%; position: relative; background: #060b18; border-radius: 0.75rem; overflow: hidden; }
+.brain2d-svg    { display: block; }
+.brain2d-region { cursor: pointer; }
+.brain2d-legend { display: flex; align-items: center; gap: 0.75rem; padding: 0.4rem 0.75rem; }
+.brain2d-leg-item   { font-size: 0.62rem; color: var(--text-tertiary); display: flex; align-items: center; gap: 0.3rem; }
+.brain2d-leg-item::before { content: ''; display: inline-block; width: 0.6rem; height: 0.6rem; border-radius: 50%; }
+.brain2d-risk::before     { background: #ef4444; }
+.brain2d-protect::before  { background: #22c55e; }
+.brain2d-leg-label { font-size: 0.6rem; color: var(--text-tertiary); font-family: var(--font-mono); margin-left: auto; }
