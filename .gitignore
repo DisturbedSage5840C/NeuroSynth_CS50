@@ -20,3 +20,5 @@ static/
 *.dvc
 .DS_Store
 Thumbs.db
+*.egg-info/
+.pytest_cache/
