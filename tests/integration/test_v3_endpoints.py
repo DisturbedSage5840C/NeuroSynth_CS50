@@ -348,6 +348,10 @@ def test_v3_analyze_missing_features_returns_valid(client, auth_headers):
 
 def test_platt_calibrator_fit_predict():
     """_PlattCalibrator should fit without error and produce probabilities in [0,1]."""
+    import os, sys
+    _src = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
+    if _src not in sys.path:
+        sys.path.insert(0, _src)
     import numpy as np
     from neurosynth.models.calibrated_ensemble import _PlattCalibrator
 
