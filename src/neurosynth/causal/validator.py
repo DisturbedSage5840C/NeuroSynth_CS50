@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -119,4 +120,3 @@ class CausalGraphValidator:
 
 
 import torch
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from neurosynth.connectors.adni import ADNIConnector
 from neurosynth.connectors.base import AbstractNeuroDataSource
 from neurosynth.connectors.gnomad import GnomADConnector
@@ -7,7 +8,6 @@ from neurosynth.connectors.ppmi import PPMIConnector
 from neurosynth.connectors.ukbb import UKBBConnector
 from neurosynth.connectors.wearable_stream import WearableStreamConnector
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 __all__ = [
     "AbstractNeuroDataSource",
     "ADNIConnector",

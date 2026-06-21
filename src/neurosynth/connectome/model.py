@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -10,7 +11,6 @@ from torch_geometric.nn import GATv2Conv, global_add_pool, global_max_pool, glob
 
 try:
     from torchdiffeq import odeint
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 except Exception:  # pragma: no cover
     odeint = None
 

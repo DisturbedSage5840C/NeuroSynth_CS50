@@ -1,3 +1,4 @@
+// AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";

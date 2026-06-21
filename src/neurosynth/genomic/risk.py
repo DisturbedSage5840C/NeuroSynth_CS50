@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -6,7 +7,6 @@ import numpy as np
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 @dataclass
 class VariantRiskScorer:

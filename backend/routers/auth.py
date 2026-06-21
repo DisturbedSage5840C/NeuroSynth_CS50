@@ -1,10 +1,10 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from fastapi import APIRouter, HTTPException, Request, Response, status
 
 from backend.core.config import get_settings
 from backend.core.security import ACCESS_COOKIE, REFRESH_COOKIE, Role, create_access_token, create_refresh_token, decode_token
 from backend.models import ApiMessage, LoginRequest, TokenEnvelope, UserContext
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 DEMO_USERS = {

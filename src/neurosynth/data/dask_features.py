@@ -1,9 +1,9 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import dask.dataframe as dd
 import pandas as pd
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 def build_patient_feature_matrix(
     biomarker_timeseries: pd.DataFrame,

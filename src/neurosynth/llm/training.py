@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -50,7 +51,6 @@ class Stage1Trainer:
 
         from datasets import load_dataset
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         ds = load_dataset("text", data_files=str(corpus_text_path))["train"]
 
         def tok(ex):

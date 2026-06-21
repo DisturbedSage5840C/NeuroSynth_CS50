@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """NeuroSynth v5 load test.
 
 Usage:

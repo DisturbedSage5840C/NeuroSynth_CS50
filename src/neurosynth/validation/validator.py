@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Core model validation suite for NeuroSynth v2.
 
 Computes comprehensive model evaluation metrics:
@@ -221,7 +222,6 @@ class ModelValidator:
         """
         try:
             import shap
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         except ImportError:
             return 0.0
 

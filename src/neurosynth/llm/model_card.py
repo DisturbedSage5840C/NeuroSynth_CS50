@@ -1,8 +1,8 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from pathlib import Path
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 def generate_model_card(output_path: Path, eval_summary: dict | None = None) -> None:
     eval_summary = eval_summary or {}

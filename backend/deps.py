@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from collections.abc import Callable
@@ -9,7 +10,6 @@ from backend.core.security import Role
 from backend.db import Database, get_db
 from backend.models import UserContext
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 def get_redis(request: Request) -> Redis:
     redis_client: Redis | None = getattr(request.app.state, "redis", None)

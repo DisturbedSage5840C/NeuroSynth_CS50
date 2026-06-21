@@ -1,10 +1,10 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from datetime import UTC, datetime
 
 import numpy as np
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class WearableSimulator:
     def __init__(self, seed: int | None = None, phi: float = 0.85) -> None:

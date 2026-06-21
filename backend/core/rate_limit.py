@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from math import ceil
@@ -11,7 +12,6 @@ from slowapi.util import get_remote_address
 from backend.core.security import Role
 from backend.models import ErrorResponse
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 ROLE_LIMITS: dict[str, str] = {
     Role.CLINICIAN.value: "100/minute",

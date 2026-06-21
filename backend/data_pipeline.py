@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from pathlib import Path
@@ -8,7 +9,6 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class DataPipeline:
     """Data pipeline for alzheimers_disease_data.csv with 34-feature schema."""

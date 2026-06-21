@@ -1,7 +1,7 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class NeuroSynthSettings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_prefix="NEURO_", extra="ignore")

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import asyncio
@@ -18,7 +19,6 @@ from neurosynth.core.exceptions import DicomValidationError
 from neurosynth.core.logging import get_logger
 from neurosynth.core.models import DicomResult, DicomValidationResult
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 SAFE_HARBOR_TAGS = [
     (0x0010, 0x0010),
     (0x0010, 0x0020),

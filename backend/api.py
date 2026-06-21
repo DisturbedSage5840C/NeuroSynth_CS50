@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import asyncio
@@ -362,7 +363,6 @@ async def lifespan(app: FastAPI):
             raise
         except Exception as exc:
             import traceback as _tb
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
             err_detail = f"{exc}\n{_tb.format_exc()}"
             logger.warning("ml_models_load_failed", error=err_detail)
             app.state.models_loaded = False

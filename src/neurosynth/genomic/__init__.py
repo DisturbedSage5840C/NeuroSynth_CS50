@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from neurosynth.genomic.dataset import GenomicDataset, genomic_collate_fn
 from neurosynth.genomic.dna_encoder import DNASequenceEncoder
 from neurosynth.genomic.losses import WeightedMultiTaskLoss
@@ -7,7 +8,6 @@ from neurosynth.genomic.risk import VariantRiskScorer
 from neurosynth.genomic.trainer import GenomicTrainer
 from neurosynth.genomic.types import QCReport
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 __all__ = [
     "QCReport",
     "GenomicPreprocessor",

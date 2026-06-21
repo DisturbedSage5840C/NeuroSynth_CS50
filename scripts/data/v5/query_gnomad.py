@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Query gnomAD GraphQL API for neurological disease variant frequencies.
 
 gnomAD is a population-level database — it provides allele frequencies for

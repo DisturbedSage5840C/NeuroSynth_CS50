@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import argparse
@@ -12,7 +13,6 @@ from neurosynth.connectome.model import BrainConnectomeGNN
 from neurosynth.connectome.trainer import NeuroGNNTrainer
 from neurosynth.connectome.utils import set_seed, setup_ddp
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Train NeuroSynth Brain Connectome GNN")

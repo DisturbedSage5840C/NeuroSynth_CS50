@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Priority 3 verification tests — Model Upgrade."""
 import logging
 import sys

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -46,7 +47,6 @@ class CausalPhase5Engine:
     ) -> float:
         from dowhy import CausalModel
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         model = CausalModel(
             data=frame,
             treatment=treatment,

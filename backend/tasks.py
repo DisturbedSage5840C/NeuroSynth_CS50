@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import json
@@ -448,7 +449,6 @@ def recompute_cohort_stats(self):
         # Write back to cache
         import json as _json
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         async def _write(stats):
             await db.pool.execute(
                 """

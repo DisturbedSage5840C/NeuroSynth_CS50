@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Fetch neurological PubMed abstracts via NCBI E-utilities.
 
 Saves records to a JSONL file consumed by embed_corpus.py.

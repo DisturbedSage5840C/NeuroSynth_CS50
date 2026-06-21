@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -9,7 +10,6 @@ from pytorch_forecasting import GroupNormalizer, TimeSeriesDataSet
 from pytorch_forecasting.data.encoders import NaNLabelEncoder
 from torch.utils.data import WeightedRandomSampler
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 @dataclass
 class DatasetFactory:

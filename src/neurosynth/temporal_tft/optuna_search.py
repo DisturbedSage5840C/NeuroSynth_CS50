@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import optuna
@@ -5,7 +6,6 @@ from optuna.pruners import MedianPruner
 from pytorch_forecasting import TemporalFusionTransformer
 from pytorch_forecasting.metrics import QuantileLoss
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 def run_optuna_search(training_dataset, val_loader, n_trials: int = 100):
     def objective(trial: optuna.Trial) -> float:

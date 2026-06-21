@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from neurosynth.causal.counterfactual import CounterfactualSimulator
 from neurosynth.causal.data_prep import CausalDataPreparer
 from neurosynth.causal.model import NeuralCausalDiscovery
@@ -13,7 +14,6 @@ from neurosynth.causal.types import (
 )
 from neurosynth.causal.validator import CausalGraphValidator
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 __all__ = [
     "CausalDataPreparer",
     "NeuralCausalDiscovery",

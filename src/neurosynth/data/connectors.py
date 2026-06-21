@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from datetime import date
@@ -9,7 +10,6 @@ import pandas as pd
 from neurosynth.core.logging import get_logger
 from neurosynth.data.iceberg_catalog import IcebergDomainCatalog
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class ADNIIngestionConnector:
     """Simple ADNI metadata connector for patient demographics into Iceberg."""

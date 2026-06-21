@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import csv
@@ -17,7 +18,6 @@ from torch_geometric.data import Data
 
 from neurosynth.connectome.utils import load_normative_stats
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class ConnectomeBuilder:
     def __init__(self, normative_stats_path: Path | None = None, random_state: int = 42) -> None:

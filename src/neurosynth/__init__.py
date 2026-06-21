@@ -1,8 +1,8 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from importlib import import_module
 
 from neurosynth.core.config import NeuroSynthSettings
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 _LAZY_EXPORTS = {
 	"ConnectomeBuilder": ("neurosynth.connectome", "ConnectomeBuilder"),

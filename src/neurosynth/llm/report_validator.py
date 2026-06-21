@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import argparse
@@ -39,7 +40,6 @@ class ClinicalReportValidator:
         try:
             from presidio_analyzer import AnalyzerEngine
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
             analyzer = AnalyzerEngine()
             ents = analyzer.analyze(text=text, language="en", entities=["PERSON", "LOCATION"])
             if any(e.entity_type == "PERSON" for e in ents):

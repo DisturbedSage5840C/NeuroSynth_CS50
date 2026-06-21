@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from typing import Tuple
@@ -5,7 +6,6 @@ from typing import Tuple
 import torch
 import torch.nn as nn
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 def _act(name: str) -> nn.Module:
     if name.lower() == "gelu":

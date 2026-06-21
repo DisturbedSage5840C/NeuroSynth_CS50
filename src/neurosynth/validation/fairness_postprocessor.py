@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Fairness post-processing for NeuroSynth v2.
 
 Implements equalized-odds-aware threshold calibration that adjusts
@@ -20,7 +21,6 @@ import pandas as pd
 from sklearn.calibration import IsotonicRegression
 from sklearn.metrics import roc_curve
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 logger = logging.getLogger(__name__)
 
 

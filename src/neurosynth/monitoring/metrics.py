@@ -1,9 +1,9 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Prometheus metric definitions for NeuroSynth production monitoring."""
 from __future__ import annotations
 
 from prometheus_client import Counter, Gauge, Histogram, Info
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 # -- Application info --
 APP_INFO = Info("neurosynth", "NeuroSynth application information")

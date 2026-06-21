@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """
 Generates an expanded multi-disease neurological dataset combining:
 1. The existing alzheimers_disease_data.csv

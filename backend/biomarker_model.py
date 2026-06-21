@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from pathlib import Path
@@ -138,7 +139,6 @@ class BiomarkerPredictor:
             # Neither third-model artifact exists; create an untrained fallback
             # so that the ensemble can still function with RF+GB+LR.
             import logging
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
             logging.getLogger(__name__).warning(
                 "No third model artifact found (xgboost_model.pkl or extra_trees_model.pkl). "
                 "Using a fresh ExtraTreesClassifier — predictions may be degraded."

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import argparse
@@ -13,7 +14,6 @@ from neurosynth.temporal_tft.dataset_factory import DatasetFactory
 from neurosynth.temporal_tft.lightning_module import NeuroTFTLightningModule
 from neurosynth.temporal_tft.model import NeuroTFT
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 def seed_everything(seed: int = 42) -> None:
     pl.seed_everything(seed, workers=True)

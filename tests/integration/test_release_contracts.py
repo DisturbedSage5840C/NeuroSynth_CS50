@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import json
@@ -7,8 +8,8 @@ from pathlib import Path
 def test_required_release_contract_files_exist() -> None:
     root = Path(__file__).resolve().parents[2]
     assert (root / ".env.prod.example").exists()
-    assert (root / "scripts" / "release_gate.py").exists()
     assert (root / "terraform" / "prod.tfvars.example").exists()
+    assert (root / "scripts" / "release_gate.py").exists()
     assert (root / "scripts" / "train_orchestrator.py").exists()
     assert (root / "scripts" / "publish_model_artifacts.py").exists()
 

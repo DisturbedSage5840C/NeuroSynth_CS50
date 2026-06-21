@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -14,7 +15,6 @@ from torch import nn
 try:
     from torch_geometric.data import Batch, HeteroData
     from torch_geometric.nn import SAGEConv
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 except Exception:  # pragma: no cover
     Batch = Any  # type: ignore[assignment]
     HeteroData = Any  # type: ignore[assignment]

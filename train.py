@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 #!/usr/bin/env python3
 """NeuroSynth v4 — unified training entry point.
 

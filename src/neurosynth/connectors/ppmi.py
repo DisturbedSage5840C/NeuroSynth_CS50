@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import asyncio
@@ -13,7 +14,6 @@ from neurosynth.core.exceptions import DataIngestionError
 from neurosynth.core.logging import get_logger
 from neurosynth.core.models import OAuthToken
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class PPMIConnector(AbstractNeuroDataSource):
     FILES = [

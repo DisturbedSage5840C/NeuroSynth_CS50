@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """
 Disease-type classifier. Takes patient features and returns the most likely
 neurological disease type. Used to route to disease-specific risk models.
@@ -238,7 +239,6 @@ class DiseaseClassifier:
         Prefer train() which loads real data first.
         """
         import warnings
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         warnings.warn(
             "generate_synthetic_training_data is deprecated. "
             "DiseaseClassifier.train() now loads from real datasets.",

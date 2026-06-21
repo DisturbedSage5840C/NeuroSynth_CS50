@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import json
@@ -9,7 +10,6 @@ from typing import Any
 import numpy as np
 import torch
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 def set_seed(seed: int = 42) -> None:
     os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"

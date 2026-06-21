@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """FDA SaMD (Software as a Medical Device) audit trail generator.
 
 Produces structured audit records compliant with:
@@ -20,7 +21,6 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 logger = logging.getLogger(__name__)
 
 

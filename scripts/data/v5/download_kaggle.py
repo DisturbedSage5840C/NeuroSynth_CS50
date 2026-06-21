@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Download and process Kaggle neurological datasets into the v5 schema.
 
 Datasets:

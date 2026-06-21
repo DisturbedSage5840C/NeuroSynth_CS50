@@ -1,10 +1,10 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import lightning.pytorch as pl
 import torch
 from lightning.pytorch.callbacks import StochasticWeightAveraging
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class NeuroTFTLightningModule(pl.LightningModule):
     def __init__(self, tft_model, learning_rate: float = 4.2e-4) -> None:

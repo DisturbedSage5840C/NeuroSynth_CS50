@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Prediction endpoints — full synchronous analysis and async pipeline.
 
 v2 FIXES:
@@ -32,7 +33,6 @@ from backend.deps import get_current_user, get_database
 from backend.models import FeatureVector, PredictionResponse, UserContext
 from backend.tasks import enqueue_full_pipeline
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/predictions", tags=["predictions"])

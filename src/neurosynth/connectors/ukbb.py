@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """UK Biobank (UKBB) bulk data connector.
 
 Provides access to UK Biobank neurological cohort data via the
@@ -28,7 +29,6 @@ from neurosynth.core.config import NeuroSynthSettings
 from neurosynth.core.exceptions import DataIngestionError
 from neurosynth.core.logging import get_logger
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 # UK Biobank Data-Field IDs relevant to neurological research
 UKBB_FIELD_MAP = {

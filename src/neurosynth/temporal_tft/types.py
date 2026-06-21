@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -5,7 +6,6 @@ from dataclasses import dataclass, field
 import numpy as np
 import pandas as pd
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 @dataclass
 class CalibratedTFT:

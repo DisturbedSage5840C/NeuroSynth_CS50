@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import asyncio
@@ -16,7 +17,6 @@ from neurosynth.core.config import NeuroSynthSettings
 from neurosynth.core.exceptions import WearableProcessingError
 from neurosynth.core.logging import get_logger
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 BIOMARKER_STREAM_SQL = """
 CREATE TABLE IF NOT EXISTS biomarker_stream (
     patient_id UUID NOT NULL,

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Enhanced feature engineering for gate-passing models.
 
 Adds clinically-motivated interaction features and polynomial terms
@@ -14,7 +15,6 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 def add_interaction_features(X: pd.DataFrame) -> pd.DataFrame:
     """Add clinically-motivated interaction features to boost AUC.

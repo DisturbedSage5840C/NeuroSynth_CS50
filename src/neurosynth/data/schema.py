@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Extended 54-feature Pandera schema for NeuroSynth v2.
 
 Defines the canonical feature set combining clinical, imaging, genomic,
@@ -20,7 +21,6 @@ from typing import Any
 import pandera as pa
 from pandera.typing import Series
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 # ---------------------------------------------------------------------------
 # Feature tier classification

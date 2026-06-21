@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Priority 1 bug-fix verification — wrapped as a pytest test so the heavy work
 (disease classifier training, report generation) runs only when pytest invokes
 the test, not at module collection time. Module-level execution previously

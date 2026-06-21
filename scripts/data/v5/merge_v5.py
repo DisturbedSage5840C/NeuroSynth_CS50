@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Merge all v5 real data sources into a single unified training file.
 
 Input sources (any combination of what's available):

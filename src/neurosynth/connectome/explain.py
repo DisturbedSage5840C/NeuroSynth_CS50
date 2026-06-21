@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from pathlib import Path
@@ -13,7 +14,6 @@ from torch_geometric.explain import Explainer, GNNExplainer, ModelConfig
 from neurosynth.connectome.types import ExplanationResult
 from neurosynth.connectome.utils import otsu_threshold
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class ConnectomeExplainer:
     def __init__(self, roi_names: list[str] | None = None) -> None:

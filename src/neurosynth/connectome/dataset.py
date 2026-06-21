@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from collections import defaultdict
@@ -134,7 +135,6 @@ class TemporalLengthBatchSampler:
         if self.shuffle:
             import random
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
             random.shuffle(buckets)
         for bucket in buckets:
             yield [idx for idx, _ in bucket]

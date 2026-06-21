@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 import asyncio
 import json
 
@@ -11,7 +12,6 @@ from backend.deps import get_current_user, get_redis
 from backend.models import SSEHandshakeResponse, UserContext
 from backend.wearable_simulator import WearableSimulator
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 router = APIRouter(prefix="/biomarkers", tags=["biomarkers"])
 
 

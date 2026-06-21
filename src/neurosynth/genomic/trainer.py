@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -12,7 +13,6 @@ from neurosynth.genomic.losses import WeightedMultiTaskLoss
 
 try:
     from opacus import PrivacyEngine
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 except Exception:  # pragma: no cover
     PrivacyEngine = None
 

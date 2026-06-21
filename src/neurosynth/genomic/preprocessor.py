@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import os
@@ -13,7 +14,6 @@ from neurosynth.genomic.types import QCReport, VariantFeatureMatrix
 
 try:
     import hail as hl
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 except Exception:  # pragma: no cover
     hl = None
 

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import argparse
@@ -11,7 +12,6 @@ from qdrant_client.models import Distance, HnswConfigDiff, PointStruct, VectorPa
 from rank_bm25 import BM25Okapi
 from sentence_transformers import SentenceTransformer
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 @dataclass
 class RetrievedPassage:

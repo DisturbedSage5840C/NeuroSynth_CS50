@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import hashlib
@@ -24,7 +25,6 @@ class ConstrainedReportGenerator:
             from vllm import LLM
 
             from neurosynth.llm.pmid_verify import PMIDVerifier
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         except ImportError as exc:  # pragma: no cover
             raise RuntimeError(
                 "ConstrainedReportGenerator requires vllm + outlines + mlflow + biopython. "

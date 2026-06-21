@@ -1,10 +1,10 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from celery import Celery
 
 from backend.core.config import get_settings
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 settings = get_settings()
 
 celery_app = Celery(

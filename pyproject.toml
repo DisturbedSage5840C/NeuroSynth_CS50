@@ -170,6 +170,3 @@ where = ["src"]
 addopts = "-q --cov=neurosynth --cov-report=term-missing --timeout=60"
 asyncio_mode = "auto"
 timeout_method = "signal"
-# Only collect fast, data-independent tests by default.
-# test_priority*.py files require real training data and must be run locally.
-testpaths = ["tests/unit", "tests/integration"]

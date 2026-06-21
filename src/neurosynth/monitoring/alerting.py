@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Alerting — Slack & PagerDuty webhook integration for drift/model alerts."""
 from __future__ import annotations
 
@@ -11,7 +12,6 @@ from typing import Any
 
 import httpx
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 logger = logging.getLogger(__name__)
 
 

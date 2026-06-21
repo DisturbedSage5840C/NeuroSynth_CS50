@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import asyncio
@@ -63,7 +64,6 @@ class ADNIConnector(AbstractNeuroDataSource):
     async def _load_csv_sftp(self, sftp_path: str) -> pd.DataFrame:
         try:
             import asyncssh
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         except ImportError as exc:  # pragma: no cover
             raise DataIngestionError("asyncssh is required for SFTP CSV loading") from exc
 

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import json
@@ -208,7 +209,6 @@ class ModelRegistry:
                 raise ImportError("torch not available")
             temporal = _TPM(feature_names)
             import torch
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
             lstm_state = torch.load(
                 self.models_dir / "lstm_model.pt",
                 map_location="cpu",

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """v2 Clinical Report Generator — SOAP structure, ICD-10, FHIR R4, PDF.
 
 Priority 6 upgrade from v1 report_generator.py:
@@ -439,7 +440,6 @@ class ClinicalReportGeneratorV2:
     ) -> dict[str, Any]:
         """Async version for use in async endpoints."""
         import asyncio
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         loop = asyncio.get_running_loop()
         return await loop.run_in_executor(
             None,

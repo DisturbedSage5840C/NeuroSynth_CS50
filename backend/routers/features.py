@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Feature schema endpoint (Gap 7).
 
 Serves the human-readable encoding reference for every clinical input feature so the
@@ -8,7 +9,6 @@ from fastapi import APIRouter
 
 from backend.feature_schema import get_feature_schema
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 router = APIRouter(prefix="/v2/features", tags=["features-v2"])
 
 

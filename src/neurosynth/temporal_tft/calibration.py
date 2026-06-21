@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import random
@@ -10,7 +11,6 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, roc_auc_sco
 
 from neurosynth.temporal_tft.types import CalibratedTFT, ValidationReport
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class TFTCalibrator:
     @staticmethod

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Validation gate logic for NeuroSynth v2 model promotion.
 
 Implements hard and soft gates that determine whether a model
@@ -30,7 +31,6 @@ from neurosynth.validation.fairness import FairnessReport
 from neurosynth.validation.robustness import RobustnessReport
 from neurosynth.validation.validator import ValidationReport
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 logger = logging.getLogger(__name__)
 
 

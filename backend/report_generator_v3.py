@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """v3 Clinical Report Generator — live Claude LLM SOAP narrative (Gap 4).
 
 Extends :class:`ClinicalReportGeneratorV2`. When an Anthropic API key is configured
@@ -231,7 +232,6 @@ class ClinicalReportGeneratorV3(ClinicalReportGeneratorV2):
     def _parse_soap_json(text: str) -> dict[str, str]:
         import json
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         match = re.search(r"\{.*\}", text, re.DOTALL)
         if not match:
             raise ValueError("LLM response contained no JSON object")

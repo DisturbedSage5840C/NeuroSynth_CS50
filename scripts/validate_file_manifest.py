@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Validate that all Part 7 key files (new + modified) from PLAN_V5.md exist.
 
 Usage:

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from neurosynth.wearable.processor import DAILY_AGG_SQL, WEEKLY_DETERIORATION_SQL

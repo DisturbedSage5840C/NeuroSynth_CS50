@@ -1459,11 +1459,6 @@ Then hard-refresh the browser (Cmd+Shift+R on Mac).
 
 ---
 
-## Acknowledgements
-**AI Assistance:** Portions of this project were developed with assistance from Claude (Anthropic). All architecture decisions, clinical design choices, data pipeline logic, and implementation were directed and reviewed by the author. AI tools were used as an amplifier per CS50's academic honesty policy, not as a replacement for original work.
-
----
-
 ## Security & Clinical Disclaimer
 
 ### Security Notes
@@ -1486,3 +1481,8 @@ Before any production clinical use:
 - Establish human oversight workflows for any model-assisted decisions
 
 The hallucination guard in `ClinicalReportGeneratorV3` reduces LLM fabrication risk but does not eliminate it. All AI-generated reports require clinical review before use in patient care.
+
+---
+
+## Acknowledgements
+**AI Assistance:** Portions of this project were developed with assistance from Claude (Anthropic). All architecture decisions, clinical design choices, data pipeline logic, and implementation were directed and reviewed by the author. AI tools were used as an amplifier per CS50's academic honesty policy, not as a replacement for original work.

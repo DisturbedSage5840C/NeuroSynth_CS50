@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -6,7 +7,6 @@ import networkx as nx
 import numpy as np
 import torch
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 @dataclass
 class CausalInput:

@@ -1,7 +1,7 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 import logging
 import structlog
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 def configure_logging(log_level: str = "INFO") -> None:
     logging.basicConfig(level=getattr(logging, log_level.upper(), logging.INFO), format="%(message)s")

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """NeuroSynth v5 — main training script.
 
 Trains the 6-model ensemble (RF + GB + CatBoost + LR + LightGBM + TabNet)

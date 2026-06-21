@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel
 
@@ -6,7 +7,6 @@ from backend.deps import get_current_user
 from backend.models import CausalRequest, CausalResponse, UserContext
 from backend.tasks import causal_analysis
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 router = APIRouter(prefix="/causal", tags=["causal"])
 
 

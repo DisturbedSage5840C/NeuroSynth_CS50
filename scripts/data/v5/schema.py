@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """V5 unified feature schema — 56 features across 5 modalities + metadata."""
 from __future__ import annotations
 

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """v3 Data endpoints — real dataset status, cohort stats, and provenance.
 
 NOTE: Do NOT add ``from __future__ import annotations``.
@@ -27,7 +28,6 @@ from backend.models_v3 import (
 )
 from backend.services.data_pipeline_service import get_data_pipeline_service
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/v3/data", tags=["data-v3"])

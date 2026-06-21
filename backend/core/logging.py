@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import logging
@@ -5,7 +6,6 @@ import sys
 
 import structlog
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 def configure_structlog() -> None:
     structlog.configure(

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -58,7 +59,6 @@ class ForecastingPhase4Model:
 
         from pytorch_forecasting import TemporalFusionTransformer
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         self._tft = TemporalFusionTransformer.from_dataset(self._dataset, learning_rate=1e-3, hidden_size=32)
 
         # Lightweight stand-in training route; full training is expected in production trainer modules.

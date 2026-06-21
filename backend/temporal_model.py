@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from pathlib import Path
@@ -7,7 +8,6 @@ import numpy as np
 import torch
 from torch import nn
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class TrajectoryLSTM(nn.Module):
     def __init__(self, input_size: int = 32) -> None:

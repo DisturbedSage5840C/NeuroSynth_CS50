@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Priority 2 verification tests — Data Pipeline Upgrade."""
 import logging
 import sys

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Literature endpoints — pgvector similarity search over PubMed corpus.
 
 NOTE: Do NOT add ``from __future__ import annotations`` — FastAPI needs
@@ -17,7 +18,6 @@ from pydantic import BaseModel, Field
 from backend.deps import get_current_user, get_database
 from backend.db import Database
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/v3/literature", tags=["literature"])

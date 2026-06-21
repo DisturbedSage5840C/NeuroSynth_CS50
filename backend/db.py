@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from typing import Any
@@ -131,7 +132,6 @@ class Database:
         if self.pool is None:
             return
         import numpy as np
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         vec = np.array(embedding, dtype=np.float32)
         await self.execute(
             """

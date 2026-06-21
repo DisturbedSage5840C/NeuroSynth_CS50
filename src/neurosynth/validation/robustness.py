@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Robustness testing for NeuroSynth v2 models.
 
 Adversarial perturbation tests to evaluate model stability:
@@ -18,7 +19,6 @@ from typing import Any, Callable
 import numpy as np
 from sklearn.metrics import roc_auc_score
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 logger = logging.getLogger(__name__)
 
 

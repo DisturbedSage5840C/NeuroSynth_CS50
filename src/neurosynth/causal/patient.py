@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -10,7 +11,6 @@ from neurosynth.causal.data_prep import VARIABLE_CONFIG
 from neurosynth.causal.model import NeuralCausalDiscovery
 from neurosynth.causal.types import PatientCausalGraph
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 @dataclass
 class PatientCausalAnalyzer:

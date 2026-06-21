@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from datetime import UTC, datetime
 from uuid import uuid4
 from typing import Any
@@ -10,7 +11,6 @@ from backend.core.security import Role
 from backend.deps import get_current_user, get_database
 from backend.models import PatientListResponse, PatientSummary, UserContext
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 router = APIRouter(prefix="/patients", tags=["patients"])
 
 

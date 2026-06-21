@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """PubMed-grounded RAG for NeuroSynth v5 report generation.
 
 Provides sync and async retrieval over the pgvector literature_embeddings
@@ -102,7 +103,6 @@ class PubMedRAG:
             return None
         try:
             import openai  # type: ignore
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
             client = openai.AsyncOpenAI(api_key=self._api_key)
             response = await client.embeddings.create(
                 model=EMBEDDING_MODEL,

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import json
@@ -14,7 +15,6 @@ from confluent_kafka import Consumer, Producer
 from neurosynth.core.logging import get_logger
 from neurosynth.data.iceberg_catalog import IcebergDomainCatalog
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 MODALITIES = {"eeg", "accel", "heart_rate"}
 

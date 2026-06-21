@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import os
@@ -6,7 +7,6 @@ from dataclasses import dataclass
 
 from Bio import Entrez
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 @dataclass
 class PMIDVerifier:

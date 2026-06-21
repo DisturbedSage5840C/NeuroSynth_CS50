@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from backend.core.config import get_settings
@@ -16,7 +17,6 @@ def _training_pipeline(project_name: str = "neurosynth", model_name: str = "defa
 def trigger_training_run(project_name: str, model_name: str) -> str:
     from kfp import Client
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
     settings = get_settings()
     client = Client(host=settings.kubeflow_host)
     run = client.create_run_from_pipeline_func(

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -26,7 +27,6 @@ from neurosynth.core.config import NeuroSynthSettings
 from neurosynth.core.logging import get_logger
 from neurosynth.data.contracts import validate_frame
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 @dataclass(frozen=True)
 class IcebergTableSpec:

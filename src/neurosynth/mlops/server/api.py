@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import asyncio
@@ -127,7 +128,6 @@ async def _validate_patient_and_data(patient_id: str, analysis_config: dict[str,
 async def _fetch_jwks() -> dict:
     import httpx
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
     if not JWKS_URL:
         raise HTTPException(status_code=503, detail="JWKS endpoint is not configured")
 

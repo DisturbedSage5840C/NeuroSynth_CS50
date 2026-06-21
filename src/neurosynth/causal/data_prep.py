@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -8,7 +9,6 @@ import torch
 
 from neurosynth.causal.types import CausalInput
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 VARIABLE_CONFIG = {
     "abeta42": {"scale": "log", "clip": (100, 2000), "modifiable": False},

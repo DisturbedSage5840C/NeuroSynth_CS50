@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -10,7 +11,6 @@ from torch import nn
 
 try:
     import allel
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 except Exception:  # pragma: no cover
     allel = None
 

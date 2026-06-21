@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import argparse
@@ -67,7 +68,6 @@ class Phase6ReportGenerator:
     ) -> ClinicalReport:
         import outlines
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         model = self._load_outlines_model()
         generator = outlines.generate.json(model, ClinicalReport)
 

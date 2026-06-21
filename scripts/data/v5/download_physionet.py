@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Download and process PhysioNet neurological datasets into the v5 schema.
 
 Datasets (all open-access, no credentials required):

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """v3 Prediction endpoints — cross-attention fusion output + RAG metadata.
 
 NOTE: Do NOT add ``from __future__ import annotations``.
@@ -98,7 +99,6 @@ def _run_cross_attention(
     if fusion_model is not None:
         try:
             import torch
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
             t_probs = [torch.tensor([p], dtype=torch.float32) for p in probs]
             with torch.no_grad():
                 fused, attn_w = fusion_model(*t_probs)

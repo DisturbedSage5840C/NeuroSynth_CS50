@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """v4 Clinical Report Generator — RAG-enhanced SOAP with PubMed citations.
 
 Extends ClinicalReportGeneratorV3. When the literature_embeddings pgvector
@@ -186,7 +187,6 @@ class ClinicalReportGeneratorV4(ClinicalReportGeneratorV3):
 
         # Build system prompt: v3 base + RAG citation rules
         from backend.report_generator_v3 import SOAP_SYSTEM_PROMPT
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         rag_system = SOAP_SYSTEM_PROMPT + RAG_CITATION_ADDENDUM
 
         message = self._client.messages.create(

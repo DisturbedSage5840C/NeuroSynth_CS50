@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -6,7 +7,6 @@ from pathlib import Path
 import torch
 from torch_geometric.data import Data
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 @dataclass
 class PatientVisit:

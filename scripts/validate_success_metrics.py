@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """NeuroSynth v5 — Success Metrics Validation.
 
 Checks all 9 success metrics defined in PLAN_V5.md §9 against their v5 targets.

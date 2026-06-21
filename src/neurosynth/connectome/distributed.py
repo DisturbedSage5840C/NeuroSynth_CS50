@@ -1,10 +1,10 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import os
 
 import torch
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 def init_distributed() -> tuple[int, int]:
     if "RANK" not in os.environ or "WORLD_SIZE" not in os.environ:

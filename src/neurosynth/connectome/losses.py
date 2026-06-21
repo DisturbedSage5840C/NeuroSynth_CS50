@@ -1,10 +1,10 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class EvidentialClassificationLoss(nn.Module):
     def __init__(self, lambda_reg: float = 0.1) -> None:

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from datetime import date
@@ -6,7 +7,6 @@ import pandas as pd
 import pandera as pa
 from pandera import Check
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 def _ts_col(nullable: bool = False) -> pa.Column:
     return pa.Column(pa.DateTime, nullable=nullable, coerce=True)

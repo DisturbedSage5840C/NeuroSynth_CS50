@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """CTGAN-based augmentation for rare disease classes (ALS, Huntington's Disease).
 
 After merging all real data sources into real_v5.parquet, ALS and Huntington's

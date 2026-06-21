@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from fastapi import APIRouter, Depends, Request
 
 from backend.core.rate_limit import limiter, role_limit
@@ -28,7 +29,6 @@ async def generate_report(payload: ReportRequest, request: Request, user: UserCo
     if predictor is not None and temporal is not None and reporter is not None and scaler is not None and feature_names:
         import pandas as pd
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         base = {name: 0.0 for name in feature_names}
         frame = pd.DataFrame([base])
         scaled = scaler.transform(frame)

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -16,7 +17,6 @@ from torch.nn.utils import clip_grad_norm_
 from neurosynth.connectome.losses import CombinedNeuroLoss
 from neurosynth.connectome.types import BatchSequence
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 @dataclass
 class EarlyStoppingState:

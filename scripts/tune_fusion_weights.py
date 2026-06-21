@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Optuna-tuned modality fusion weights for NeuroSynth v5.
 
 Replaces the v4 hardcoded weights (tabular 40%, GNN 20%, etc.) by searching

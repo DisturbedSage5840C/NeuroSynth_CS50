@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Priority 6 verification tests — Clinical Report Generation."""
 import logging
 import sys

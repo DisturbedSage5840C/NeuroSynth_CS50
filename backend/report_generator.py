@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import logging
@@ -212,7 +213,6 @@ IMPORTANT: This is a research tool. Always include disclaimer that clinical deci
         import asyncio
         from concurrent.futures import ThreadPoolExecutor
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         loop = asyncio.get_running_loop()
         return await loop.run_in_executor(
             None,

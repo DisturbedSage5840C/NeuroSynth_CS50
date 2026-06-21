@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """v3 Pydantic response models for Part 4 — Backend Changes.
 
 NOTE: Do NOT add ``from __future__ import annotations``.
@@ -9,7 +10,6 @@ from typing import Any
 from pydantic import BaseModel, ConfigDict, Field
 
 from backend.models_v2 import (
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
     AnalyzeResponseV2,
     CausalIntervention,
     ConfidenceInterval,

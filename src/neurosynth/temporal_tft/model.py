@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import numpy as np
@@ -9,7 +10,6 @@ try:
     import torch
     import torch.nn as nn
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
     class RareDiseaseQuantileLoss(QuantileLoss):
         """QuantileLoss with focal-equivalent sample weighting for rare disease classes.
 

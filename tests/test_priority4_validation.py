@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Priority 4 verification tests — Validation Pipeline (with gate fixes)."""
 import logging
 import shutil

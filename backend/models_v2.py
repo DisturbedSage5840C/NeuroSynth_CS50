@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """v2 Enhanced Pydantic models for Priority 5 — Inference API Refactor.
 
 Adds structured response models for:
@@ -15,7 +16,6 @@ from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class SHAPValue(BaseModel):
     """Single SHAP feature attribution."""

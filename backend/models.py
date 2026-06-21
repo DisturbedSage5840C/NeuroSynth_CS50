@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from datetime import datetime
@@ -7,7 +8,6 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from backend.core.security import Role
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class ApiMessage(BaseModel):
     model_config = ConfigDict(json_schema_extra={"example": {"message": "ok"}})

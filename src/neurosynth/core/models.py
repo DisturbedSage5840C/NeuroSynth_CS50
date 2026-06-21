@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from datetime import date, datetime
@@ -7,7 +8,6 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class BiomarkerRecord(BaseModel):
     model_config = ConfigDict(extra="forbid")

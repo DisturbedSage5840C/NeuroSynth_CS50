@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import hashlib
@@ -10,7 +11,6 @@ import jwt
 
 from backend.core.config import get_settings
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class Role(StrEnum):
     CLINICIAN = "CLINICIAN"

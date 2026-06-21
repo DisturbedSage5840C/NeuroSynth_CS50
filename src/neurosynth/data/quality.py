@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Data Quality Agent for NeuroSynth v2.
 
 Runs automated quality checks on ingested data batches:
@@ -18,7 +19,6 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 logger = logging.getLogger(__name__)
 
 # PII patterns

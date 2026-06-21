@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from pathlib import Path
@@ -12,7 +13,6 @@ from sklearn.linear_model import BayesianRidge
 
 try:
     from neuroCombat import neuroCombat
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 except Exception:  # pragma: no cover
     neuroCombat = None
 

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from datetime import date
@@ -14,7 +15,6 @@ from pyliftover import LiftOver
 from neurosynth.core.logging import get_logger
 from neurosynth.data.iceberg_catalog import IcebergDomainCatalog
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class GenomicsIngestionPipeline:
     """VCF -> scikit-allel -> annotation -> liftover -> H5 -> Iceberg."""

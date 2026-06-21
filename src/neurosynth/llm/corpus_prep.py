@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import argparse
@@ -106,7 +107,6 @@ class ClinicalCorpusPreparer:
     def tokenizer_analysis(self, notes: pd.DataFrame, base_model: str, text_col: str = "note_text") -> TokenizerGapReport:
         from transformers import AutoTokenizer
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         tokenizer = AutoTokenizer.from_pretrained(base_model)
         corpus = " ".join(notes[text_col].astype(str).tolist()).lower()
 

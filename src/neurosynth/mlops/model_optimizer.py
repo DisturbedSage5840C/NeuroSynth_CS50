@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import json
@@ -75,7 +76,6 @@ dynamic_batching: {{preferred_batch_size: [8, 16, 32], max_queue_delay_microseco
             try:
                 from torch2trt import torch2trt
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
                 trt_model = torch2trt(
                     model,
                     [example_inputs],

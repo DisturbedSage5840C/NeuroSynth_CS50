@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Priority 8 verification tests — Monitoring & Drift Detection."""
 import json
 import logging

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Priority 5 verification — Inference API Refactor.
 
 Wrapped as pytest functions: the LIME perturbation search, counterfactual

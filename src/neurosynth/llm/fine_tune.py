@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import argparse
@@ -15,7 +16,6 @@ from rouge_score import rouge_scorer
 from transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments
 from trl import DataCollatorForCompletionOnlyLM, SFTTrainer
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 @dataclass(frozen=True)
 class Phase6LoraConfig:

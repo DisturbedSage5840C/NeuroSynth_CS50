@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import json
@@ -8,7 +9,6 @@ import numpy as np
 import torch
 from torch import nn
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 DEFAULT_VARIABLES = [
     "Age",
     "MMSE",

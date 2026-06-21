@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -196,7 +197,6 @@ class NeuroSynthLakehouse:
         try:
             from neuroCombat import neuroCombat
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
             harmonized = neuroCombat(
                 dat=frame[cols].T,
                 covars=frame[["site_id", "sex"]].assign(age=frame.get("age_at_enrollment", 0)),

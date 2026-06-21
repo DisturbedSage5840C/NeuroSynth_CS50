@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """gnomAD (Genome Aggregation Database) variant frequency connector.
 
 Queries the gnomAD API for neurological disease-associated variants
@@ -24,7 +25,6 @@ from neurosynth.core.config import NeuroSynthSettings
 from neurosynth.core.exceptions import DataIngestionError
 from neurosynth.core.logging import get_logger
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 # Key neurological disease-associated genes and their gnomAD identifiers
 NEURO_GENE_PANEL = {

@@ -1,10 +1,10 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from fastapi import APIRouter, Depends, Request
 
 from backend.db import Database
 from backend.deps import get_database
 from backend.models import HealthResponse, ReadyResponse
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 router = APIRouter(prefix="", tags=["health"])
 
 

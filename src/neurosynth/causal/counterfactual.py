@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -96,5 +97,4 @@ class CounterfactualSimulator:
             )
         import pandas as pd
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         return pd.DataFrame(rows).sort_values("expected_dci_change")

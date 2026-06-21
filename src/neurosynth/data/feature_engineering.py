@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Multi-modal feature engineering for NeuroSynth v2.
 
 Combines clinical CSV features, connector outputs (ADNI, PPMI, MIMIC,
@@ -22,7 +23,6 @@ import pandas as pd
 
 from neurosynth.data.quality import DataQualityAgent, QualityReport
 from neurosynth.data.schema import (
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
     ALL_FEATURES,
     FEATURE_REGISTRY,
     TIER_1_FEATURES,

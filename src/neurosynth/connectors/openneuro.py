@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """OpenNeuro BIDS dataset connector.
 
 Downloads and parses BIDS-formatted neuroimaging datasets from
@@ -173,7 +174,6 @@ class OpenNeuroConnector(AbstractNeuroDataSource):
         try:
             from nilearn import datasets, image, masking
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
             # Use Harvard-Oxford atlas for hippocampus extraction
             atlas = datasets.fetch_atlas_harvard_oxford("sub-maxprob-thr25-2mm")
             atlas_img = image.load_img(atlas.maps)

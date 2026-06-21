@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor
@@ -16,7 +17,6 @@ except Exception:  # pragma: no cover
 
 try:
     import pysam
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 except Exception:  # pragma: no cover
     pysam = None
 

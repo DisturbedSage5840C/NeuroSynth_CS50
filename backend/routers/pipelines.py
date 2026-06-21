@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from fastapi import APIRouter, Depends, Request
 
 from backend.core.rate_limit import limiter, role_limit
@@ -6,7 +7,6 @@ from backend.deps import require_role
 from backend.models import PipelineRunRequest, PipelineRunResponse, UserContext
 from backend.services.kubeflow_service import trigger_training_run
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 router = APIRouter(prefix="/pipelines", tags=["pipelines"])
 
 

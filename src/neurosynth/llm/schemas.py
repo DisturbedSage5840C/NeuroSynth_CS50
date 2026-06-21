@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from datetime import datetime
@@ -5,7 +6,6 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class PatientSummary(BaseModel):
     disease_stage: str

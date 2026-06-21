@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import asyncio
@@ -12,7 +13,6 @@ from neurosynth.core.config import NeuroSynthSettings
 from neurosynth.core.exceptions import DataIngestionError
 from neurosynth.core.logging import get_logger
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class MIMICConnector(AbstractNeuroDataSource):
     def __init__(self, settings: NeuroSynthSettings) -> None:

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import json
@@ -7,7 +8,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class AttentionEncoderLayer(nn.Module):
     def __init__(self, d_model: int, nhead: int, dim_feedforward: int, dropout: float) -> None:

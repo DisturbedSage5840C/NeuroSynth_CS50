@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Fairness assessment for NeuroSynth v2 models.
 
 Evaluates demographic parity and equalized odds across
@@ -135,7 +136,6 @@ class FairnessAuditor:
         npv = tn / max(tn + fn, 1)
 
         from sklearn.metrics import roc_auc_score
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
         try:
             auc = float(roc_auc_score(y_true, y_prob)) if len(np.unique(y_true)) > 1 else 0.5
         except Exception:

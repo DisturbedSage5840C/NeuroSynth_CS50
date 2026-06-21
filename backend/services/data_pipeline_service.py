@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """DataPipelineService — async management of real v5 data sources.
 
 Responsibilities:
@@ -284,7 +285,6 @@ class DataPipelineService:
 
         try:
             import pandas as pd  # type: ignore[import]
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
             df = pd.read_parquet(parquet_path)
 
             disease_col = next(

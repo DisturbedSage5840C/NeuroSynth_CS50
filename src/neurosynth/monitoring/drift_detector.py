@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Drift Detector — PSI & KS-based feature drift detection.
 
 Tiered thresholds:
@@ -276,7 +277,6 @@ class DriftDetector:
         try:
             from celery import Celery
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
             broker = os.getenv("NEUROSYNTH_REDIS_URL", "redis://localhost:6379/0")
             app = Celery("neurosynth-drift", broker=broker, backend=broker)
             res = app.send_task("run_full_training_pipeline", kwargs=payload, queue="training")

@@ -1,0 +1,289 @@
+{
+  "trained_at": "2026-05-24T13:53:08.746459+00:00",
+  "dataset_path": "data/realistic_v4.parquet",
+  "dataset_md5": "2f3fd5d818ebf5f09edd30357c71c48e",
+  "feature_schema": [
+    "Age",
+    "Gender",
+    "Ethnicity",
+    "EducationLevel",
+    "BMI",
+    "Smoking",
+    "AlcoholConsumption",
+    "PhysicalActivity",
+    "DietQuality",
+    "SleepQuality",
+    "FamilyHistoryAlzheimers",
+    "CardiovascularDisease",
+    "Diabetes",
+    "Depression",
+    "HeadInjury",
+    "Hypertension",
+    "SystolicBP",
+    "DiastolicBP",
+    "CholesterolTotal",
+    "CholesterolLDL",
+    "CholesterolHDL",
+    "CholesterolTriglycerides",
+    "MMSE",
+    "FunctionalAssessment",
+    "MemoryComplaints",
+    "BehavioralProblems",
+    "ADL",
+    "Confusion",
+    "Disorientation",
+    "PersonalityChanges",
+    "DifficultyCompletingTasks",
+    "Forgetfulness"
+  ],
+  "bootstrap_disease": "Parkinson's Disease",
+  "dataset_stats": {
+    "n_patients": 15000,
+    "n_alzheimers": 7498,
+    "n_healthy": 7502,
+    "pct_alzheimers": 49.99,
+    "mean_age": 72.0171,
+    "mean_mmse": 25.7301,
+    "feature_distributions": {
+      "Age": {
+        "mean": 72.0171,
+        "std": 8.0103,
+        "min": 45.0,
+        "max": 100.0
+      },
+      "Gender": {
+        "mean": 0.5185,
+        "std": 0.4997,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "Ethnicity": {
+        "mean": 0.5377,
+        "std": 0.9313,
+        "min": 0.0,
+        "max": 3.0
+      },
+      "EducationLevel": {
+        "mean": 1.7029,
+        "std": 0.9533,
+        "min": 0.0,
+        "max": 3.0
+      },
+      "BMI": {
+        "mean": 26.5522,
+        "std": 4.5092,
+        "min": 15.0,
+        "max": 43.3542
+      },
+      "Smoking": {
+        "mean": 0.1783,
+        "std": 0.3827,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "AlcoholConsumption": {
+        "mean": 2.4809,
+        "std": 2.4434,
+        "min": 0.0001,
+        "max": 20.0
+      },
+      "PhysicalActivity": {
+        "mean": 4.2154,
+        "std": 2.2193,
+        "min": 0.0,
+        "max": 10.0
+      },
+      "DietQuality": {
+        "mean": 5.6152,
+        "std": 1.9625,
+        "min": 0.0,
+        "max": 10.0
+      },
+      "SleepQuality": {
+        "mean": 5.3851,
+        "std": 2.0592,
+        "min": 0.0,
+        "max": 10.0
+      },
+      "FamilyHistoryAlzheimers": {
+        "mean": 0.2194,
+        "std": 0.4138,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "CardiovascularDisease": {
+        "mean": 0.2802,
+        "std": 0.4491,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "Diabetes": {
+        "mean": 0.1772,
+        "std": 0.3818,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "Depression": {
+        "mean": 0.3041,
+        "std": 0.46,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "HeadInjury": {
+        "mean": 0.1236,
+        "std": 0.3291,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "Hypertension": {
+        "mean": 0.4178,
+        "std": 0.4932,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "SystolicBP": {
+        "mean": 131.9038,
+        "std": 16.8517,
+        "min": 80.0,
+        "max": 194.5293
+      },
+      "DiastolicBP": {
+        "mean": 80.1504,
+        "std": 10.9861,
+        "min": 40.0,
+        "max": 119.6612
+      },
+      "CholesterolTotal": {
+        "mean": 199.6231,
+        "std": 34.1036,
+        "min": 100.0,
+        "max": 331.3728
+      },
+      "CholesterolLDL": {
+        "mean": 119.8881,
+        "std": 29.8787,
+        "min": 40.0,
+        "max": 246.581
+      },
+      "CholesterolHDL": {
+        "mean": 54.075,
+        "std": 13.9225,
+        "min": 20.0,
+        "max": 105.4769
+      },
+      "CholesterolTriglycerides": {
+        "mean": 148.8126,
+        "std": 56.2029,
+        "min": 40.0,
+        "max": 367.4799
+      },
+      "MMSE": {
+        "mean": 25.7301,
+        "std": 3.2088,
+        "min": 11.6107,
+        "max": 30.0
+      },
+      "FunctionalAssessment": {
+        "mean": 5.955,
+        "std": 2.2171,
+        "min": 0.0,
+        "max": 10.0
+      },
+      "MemoryComplaints": {
+        "mean": 0.3421,
+        "std": 0.4744,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "BehavioralProblems": {
+        "mean": 0.2149,
+        "std": 0.4107,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "ADL": {
+        "mean": 6.2725,
+        "std": 2.1791,
+        "min": 0.0,
+        "max": 10.0
+      },
+      "Confusion": {
+        "mean": 0.1863,
+        "std": 0.3894,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "Disorientation": {
+        "mean": 0.1365,
+        "std": 0.3433,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "PersonalityChanges": {
+        "mean": 0.2012,
+        "std": 0.4009,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "DifficultyCompletingTasks": {
+        "mean": 0.2956,
+        "std": 0.4563,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "Forgetfulness": {
+        "mean": 0.4071,
+        "std": 0.4913,
+        "min": 0.0,
+        "max": 1.0
+      }
+    },
+    "source_n_patients": 15000,
+    "training_cohort": "full_dataset"
+  },
+  "metrics": {
+    "accuracy": 0.878,
+    "f1_weighted": 0.878,
+    "roc_auc": 0.951,
+    "precision": 0.877,
+    "recall": 0.8793,
+    "confusion_matrix": [
+      [
+        1315,
+        185
+      ],
+      [
+        181,
+        1319
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.8790106951871658,
+        "recall": 0.8766666666666667,
+        "f1-score": 0.8778371161548731,
+        "support": 1500.0
+      },
+      "1": {
+        "precision": 0.8769946808510638,
+        "recall": 0.8793333333333333,
+        "f1-score": 0.8781624500665779,
+        "support": 1500.0
+      },
+      "accuracy": 0.878,
+      "macro avg": {
+        "precision": 0.8780026880191147,
+        "recall": 0.878,
+        "f1-score": 0.8779997831107256,
+        "support": 3000.0
+      },
+      "weighted avg": {
+        "precision": 0.8780026880191147,
+        "recall": 0.878,
+        "f1-score": 0.8779997831107255,
+        "support": 3000.0
+      }
+    },
+    "decision_threshold": 0.48
+  }
+}

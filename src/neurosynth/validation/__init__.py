@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """NeuroSynth v2 Validation Suite.
 
 Provides model validation, fairness auditing, robustness testing,
@@ -12,7 +13,6 @@ from neurosynth.validation.robustness import (
     RobustnessTester,
 )
 from neurosynth.validation.validator import (
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
     CalibrationMetrics,
     ModelValidator,
     ValidationReport,

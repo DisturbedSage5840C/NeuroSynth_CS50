@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Human-readable feature schema for NeuroSynth inputs (Gap 7).
 
 A single source of truth describing every clinical input feature: a human-readable
@@ -9,7 +10,6 @@ from __future__ import annotations
 
 from typing import Any, Literal
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 FeatureType = Literal["continuous", "categorical", "boolean"]
 
 

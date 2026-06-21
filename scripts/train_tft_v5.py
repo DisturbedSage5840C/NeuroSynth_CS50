@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Train NeuroSynth TFT v5 — Temporal Fusion Transformer on longitudinal sequences.
 
 Strategy when only cross-sectional data is available (the common case with

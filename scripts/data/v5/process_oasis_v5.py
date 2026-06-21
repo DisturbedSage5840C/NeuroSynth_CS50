@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Process OASIS-1/2/3 data into the v5 56-feature schema.
 
 Supports all three OASIS releases:

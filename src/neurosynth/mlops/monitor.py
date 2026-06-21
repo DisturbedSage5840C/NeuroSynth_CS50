@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -8,7 +9,6 @@ from evidently.metric_preset import DataDriftPreset, DataQualityPreset
 from evidently.report import Report
 from prometheus_client import Gauge, Histogram
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 @dataclass
 class DriftReport:

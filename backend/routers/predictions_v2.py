@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """v2 Enhanced prediction endpoints — LIME, counterfactuals, causal interventions.
 
 Priority 5 Inference API Refactor:
@@ -108,7 +109,6 @@ def _compute_lime(
     """
     from sklearn.linear_model import Ridge
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
     rng = np.random.RandomState(42)
     n_features = sample.shape[0]
 

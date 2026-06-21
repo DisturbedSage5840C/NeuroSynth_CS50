@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import json
@@ -9,7 +10,6 @@ import torch
 
 from neurosynth.causal.model import NeuralCausalDiscovery
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 def save_causal_engine(path: Path, model: NeuralCausalDiscovery, graph: nx.DiGraph, variable_names: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)

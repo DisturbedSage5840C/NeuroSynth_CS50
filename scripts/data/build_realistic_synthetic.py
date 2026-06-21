@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Realistic synthetic dataset generator (Gap 1).
 
 The existing ``generate_expanded_dataset.py`` draws every feature independently, so the

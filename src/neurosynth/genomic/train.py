@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import argparse
@@ -11,7 +12,6 @@ from neurosynth.genomic.dataset import GenomicDataset, genomic_collate_fn
 from neurosynth.genomic.model import HierarchicalVariantTransformer
 from neurosynth.genomic.trainer import GenomicTrainer, TrainerConfig
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 def build_gene_vocab(hdf5_path: Path) -> dict[str, int]:
     vocab = {"UNK": 0}

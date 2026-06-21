@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import json
@@ -17,7 +18,6 @@ def _submit_kubeflow_run(patient_id: str, analysis_config: dict) -> dict:
 
     try:
         from kfp import Client
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
     except Exception as exc:  # pragma: no cover
         return {"submitted": False, "reason": f"kfp import failed: {exc}"}
 

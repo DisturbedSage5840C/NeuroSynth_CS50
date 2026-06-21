@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import hashlib
@@ -6,7 +7,6 @@ from pathlib import Path
 
 from kfp import dsl
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 def _artifact_path(patient_id: str, name: str, suffix: str) -> str:
     digest = hashlib.sha1(f"{patient_id}:{name}".encode("utf-8")).hexdigest()[:10]

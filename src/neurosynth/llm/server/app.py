@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import hashlib
@@ -17,7 +18,6 @@ from slowapi.util import get_remote_address
 
 from neurosynth.llm.generation import ConstrainedReportGenerator
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 SECRET = os.getenv("NEURO_LLM_JWT_SECRET", "dev-secret")
 DB_DSN = os.getenv("NEURO_TIMESCALE_DSN", "postgresql://postgres:postgres@timescaledb:5432/neurosynth")

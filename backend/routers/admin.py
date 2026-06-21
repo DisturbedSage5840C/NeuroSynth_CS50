@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from fastapi import APIRouter, Depends, Request
 from fastapi.responses import Response
 from redis.asyncio import Redis
@@ -9,7 +10,6 @@ from backend.core.security import Role
 from backend.deps import get_current_user, get_redis, require_role
 from backend.models import CeleryTaskResult, QueueDepthResponse, UserContext
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 router = APIRouter(prefix="/admin", tags=["admin"])
 
 

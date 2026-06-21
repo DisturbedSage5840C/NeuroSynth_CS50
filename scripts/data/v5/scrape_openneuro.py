@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Download clinical sidecars (participants.tsv) from OpenNeuro BIDS datasets.
 
 OpenNeuro hosts neurological BIDS datasets with participants.tsv files

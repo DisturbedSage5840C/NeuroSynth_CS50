@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """v2 Report endpoints — SOAP, FHIR R4, PDF export.
 
 Priority 6 Clinical Report Generation:
@@ -40,7 +41,6 @@ def _run_report_sync(
     import numpy as np
     import pandas as pd
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
     base = {name: 0.0 for name in feature_names}
     frame = pd.DataFrame([base])
     scaled = scaler.transform(frame)

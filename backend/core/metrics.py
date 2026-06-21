@@ -1,8 +1,8 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from prometheus_client import CONTENT_TYPE_LATEST, Counter, Gauge, Histogram, generate_latest
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 REQUEST_COUNT = Counter(
     "neurosynth_http_requests_total",
     "Total HTTP requests",

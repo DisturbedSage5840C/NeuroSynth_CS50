@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -16,7 +17,6 @@ from nilearn.input_data import NiftiLabelsMasker
 from neurosynth.core.logging import get_logger
 from neurosynth.data.iceberg_catalog import IcebergDomainCatalog
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 @dataclass
 class ImagingQCResult:

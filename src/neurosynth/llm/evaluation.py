@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import json
@@ -12,7 +13,6 @@ from sklearn.metrics import cohen_kappa_score
 from neurosynth.llm.pmid_verify import PMIDVerifier
 from neurosynth.llm.schemas import ReportSchema
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class NeuroLLMEvaluator:
     def __init__(self) -> None:

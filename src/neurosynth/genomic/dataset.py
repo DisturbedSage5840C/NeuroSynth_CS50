@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 from pathlib import Path
@@ -7,7 +8,6 @@ import h5py
 import torch
 from torch.utils.data import Dataset
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class GenomicDataset(Dataset):
     def __init__(self, hdf5_path: Path, patient_ids: list[str]) -> None:

@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Process OASIS-2/3 longitudinal data into the NeuroSynth 32-feature schema.
 
 OASIS is free with registration (https://www.oasis-brains.org). Download

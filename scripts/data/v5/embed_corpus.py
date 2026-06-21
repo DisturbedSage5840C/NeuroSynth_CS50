@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Embed PubMed corpus and store embeddings in Neon pgvector.
 
 Reads the JSONL produced by build_pubmed_corpus.py, batches abstracts,

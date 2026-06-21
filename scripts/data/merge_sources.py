@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 """Merge every available processed data source into one training set.
 
 Picks up whichever of the known sources exist (the realistic synthetic set is

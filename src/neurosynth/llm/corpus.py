@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import json
@@ -11,7 +12,6 @@ from datasets import Dataset
 
 from neurosynth.llm.types import CorpusStats
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class NeuroCorpusBuilder:
     PUBMED_QUERY = (

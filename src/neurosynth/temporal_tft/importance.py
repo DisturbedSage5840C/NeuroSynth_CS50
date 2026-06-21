@@ -1,3 +1,4 @@
+# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 from __future__ import annotations
 
 import json
@@ -7,7 +8,6 @@ import numpy as np
 import pandas as pd
 import shap
 
-# AI Assistance: Developed with assistance from Claude (Anthropic) — claude.ai
 
 class VariableImportanceAnalyzer:
     def __init__(self, feature_catalog_path: Path | None = None) -> None:
