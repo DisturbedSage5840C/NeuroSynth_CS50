@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "neurosynth.fullname" . }}-gnn
+spec:
+  replicas: {{ .Values.triton.replicas }}
+  selector:
+    matchLabels: {app: neurosynth-gnn}
+  template:
+    metadata:
+      labels: {app: neurosynth-gnn}
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      tolerations:
+      - key: nvidia.com/gpu
+        operator: Exists
+        effect: NoSchedule
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node.kubernetes.io/instance-type
+                operator: In
+                values: ["g5.12xlarge", "p3.8xlarge"]
+      containers:
+      - name: triton
+        image: {{ .Values.triton.image }}
+        resources:
+          requests: {{ toYaml .Values.gpuResources.requests | nindent 12 }}
+          limits: {{ toYaml .Values.gpuResources.limits | nindent 12 }}
+        readinessProbe:
+          httpGet: {path: /v2/health/ready, port: 8000}
+          initialDelaySeconds: 60

@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-04-04T11:49:20.788678+00:00",
+  "model_dir": "artifacts",
+  "files": [
+    {
+      "path": "train_orchestrator_summary.json",
+      "size_bytes": 680,
+      "sha256": "1148fd2cf865779a65862b093e09f47d13aae24ee2ca121be15ceff08b471207"
+    }
+  ]
+}

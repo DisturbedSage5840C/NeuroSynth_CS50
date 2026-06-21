@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "neurosynth.fullname" . }}-causal
+spec:
+  replicas: {{ .Values.causal.replicas }}
+  selector:
+    matchLabels: {app: neurosynth-causal}
+  template:
+    metadata:
+      labels: {app: neurosynth-causal}
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+      - name: causal
+        image: {{ .Values.causal.image }}
+        readinessProbe:
+          httpGet: {path: /health, port: 8000}
+          initialDelaySeconds: 30

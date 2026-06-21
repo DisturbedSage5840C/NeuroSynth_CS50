@@ -1,0 +1,102 @@
+[
+  {
+    "id": "case_01_low_risk_baseline",
+    "expected_pattern": "Low risk likely, flatter trajectory",
+    "payload": {"age": 62, "educ": 16, "ses": 2, "mmse": 29, "cdr": 0.0, "etiv": 1505, "nwbv": 0.81, "asf": 1.10}
+  },
+  {
+    "id": "case_02_low_risk_youngest",
+    "expected_pattern": "Low risk likely",
+    "payload": {"age": 60, "educ": 18, "ses": 1, "mmse": 30, "cdr": 0.0, "etiv": 1520, "nwbv": 0.83, "asf": 1.08}
+  },
+  {
+    "id": "case_03_low_to_mod",
+    "expected_pattern": "Low to moderate risk",
+    "payload": {"age": 67, "educ": 15, "ses": 2, "mmse": 28, "cdr": 0.0, "etiv": 1490, "nwbv": 0.79, "asf": 1.12}
+  },
+  {
+    "id": "case_04_moderate_baseline",
+    "expected_pattern": "Moderate risk band",
+    "payload": {"age": 72, "educ": 14, "ses": 2, "mmse": 25, "cdr": 0.5, "etiv": 1460, "nwbv": 0.74, "asf": 1.18}
+  },
+  {
+    "id": "case_05_moderate_higher_age",
+    "expected_pattern": "Moderate to high risk",
+    "payload": {"age": 76, "educ": 12, "ses": 3, "mmse": 24, "cdr": 0.5, "etiv": 1435, "nwbv": 0.72, "asf": 1.22}
+  },
+  {
+    "id": "case_06_high_risk_start",
+    "expected_pattern": "High risk likely",
+    "payload": {"age": 79, "educ": 11, "ses": 3, "mmse": 21, "cdr": 1.0, "etiv": 1410, "nwbv": 0.70, "asf": 1.25}
+  },
+  {
+    "id": "case_07_high_risk_mmse_drop",
+    "expected_pattern": "High risk, stronger deterioration signal",
+    "payload": {"age": 81, "educ": 10, "ses": 3, "mmse": 19, "cdr": 1.0, "etiv": 1395, "nwbv": 0.69, "asf": 1.28}
+  },
+  {
+    "id": "case_08_critical_profile",
+    "expected_pattern": "Critical risk often expected",
+    "payload": {"age": 84, "educ": 9, "ses": 4, "mmse": 16, "cdr": 1.5, "etiv": 1370, "nwbv": 0.67, "asf": 1.31}
+  },
+  {
+    "id": "case_09_cdr_stress_test",
+    "expected_pattern": "High risk due to elevated CDR",
+    "payload": {"age": 74, "educ": 14, "ses": 2, "mmse": 24, "cdr": 2.0, "etiv": 1450, "nwbv": 0.72, "asf": 1.20}
+  },
+  {
+    "id": "case_10_mmse_stress_test",
+    "expected_pattern": "High risk due to low MMSE",
+    "payload": {"age": 74, "educ": 14, "ses": 2, "mmse": 14, "cdr": 0.5, "etiv": 1450, "nwbv": 0.72, "asf": 1.20}
+  },
+  {
+    "id": "case_11_ses_impact",
+    "expected_pattern": "Risk may rise with SES disadvantage",
+    "payload": {"age": 73, "educ": 13, "ses": 5, "mmse": 24, "cdr": 0.5, "etiv": 1455, "nwbv": 0.73, "asf": 1.19}
+  },
+  {
+    "id": "case_12_educ_protective",
+    "expected_pattern": "Slightly lower risk than matched peers",
+    "payload": {"age": 73, "educ": 20, "ses": 2, "mmse": 24, "cdr": 0.5, "etiv": 1455, "nwbv": 0.73, "asf": 1.19}
+  },
+  {
+    "id": "case_13_nwbv_drop",
+    "expected_pattern": "Risk increase with lower nWBV",
+    "payload": {"age": 75, "educ": 13, "ses": 2, "mmse": 23, "cdr": 0.5, "etiv": 1440, "nwbv": 0.66, "asf": 1.24}
+  },
+  {
+    "id": "case_14_etiv_high",
+    "expected_pattern": "Compare with case_13 for structural sensitivity",
+    "payload": {"age": 75, "educ": 13, "ses": 2, "mmse": 23, "cdr": 0.5, "etiv": 1560, "nwbv": 0.66, "asf": 1.24}
+  },
+  {
+    "id": "case_15_asf_high",
+    "expected_pattern": "Potential risk increase",
+    "payload": {"age": 77, "educ": 12, "ses": 3, "mmse": 22, "cdr": 0.5, "etiv": 1420, "nwbv": 0.71, "asf": 1.40}
+  },
+  {
+    "id": "case_16_recovery_like",
+    "expected_pattern": "Lower risk than severe profiles",
+    "payload": {"age": 71, "educ": 15, "ses": 2, "mmse": 27, "cdr": 0.0, "etiv": 1480, "nwbv": 0.78, "asf": 1.14}
+  },
+  {
+    "id": "case_17_borderline",
+    "expected_pattern": "Borderline moderate/high",
+    "payload": {"age": 78, "educ": 11, "ses": 3, "mmse": 22, "cdr": 0.5, "etiv": 1430, "nwbv": 0.71, "asf": 1.23}
+  },
+  {
+    "id": "case_18_elderly_low_cdr",
+    "expected_pattern": "Age pressure but reduced CDR effect",
+    "payload": {"age": 86, "educ": 12, "ses": 3, "mmse": 26, "cdr": 0.0, "etiv": 1400, "nwbv": 0.75, "asf": 1.17}
+  },
+  {
+    "id": "case_19_severe_combo",
+    "expected_pattern": "Critical risk very likely",
+    "payload": {"age": 88, "educ": 8, "ses": 5, "mmse": 12, "cdr": 2.0, "etiv": 1350, "nwbv": 0.64, "asf": 1.36}
+  },
+  {
+    "id": "case_20_ui_default",
+    "expected_pattern": "Moderate to high risk (reference default)",
+    "payload": {"age": 74, "educ": 14, "ses": 2, "mmse": 24, "cdr": 0.5, "etiv": 1450, "nwbv": 0.72, "asf": 1.20}
+  }
+]

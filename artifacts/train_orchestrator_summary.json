@@ -1,0 +1,35 @@
+{
+  "dry_run": false,
+  "steps": [
+    {
+      "cmd": [
+        "/Users/maruteymani/Documents/NeuroSynth/.venv312/bin/python",
+        "-m",
+        "neurosynth.connectome.train",
+        "--help"
+      ],
+      "status": "ok",
+      "rc": 0
+    },
+    {
+      "cmd": [
+        "/Users/maruteymani/Documents/NeuroSynth/.venv312/bin/python",
+        "-m",
+        "neurosynth.genomic.train",
+        "--help"
+      ],
+      "status": "ok",
+      "rc": 0
+    },
+    {
+      "cmd": [
+        "/Users/maruteymani/Documents/NeuroSynth/.venv312/bin/python",
+        "-m",
+        "neurosynth.temporal_tft.train",
+        "--help"
+      ],
+      "status": "ok",
+      "rc": 0
+    }
+  ]
+}

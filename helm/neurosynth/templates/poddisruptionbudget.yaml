@@ -1,0 +1,8 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "neurosynth.fullname" . }}-api
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels: {app: neurosynth-api}

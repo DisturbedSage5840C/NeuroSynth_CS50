@@ -1,0 +1,9 @@
+aws_region              = "us-east-1"
+eks_cluster_name        = "neurosynth-eks-prod"
+eks_cluster_role_arn    = "arn:aws:iam::<account-id>:role/neurosynth-eks-cluster"
+eks_node_role_arn       = "arn:aws:iam::<account-id>:role/neurosynth-eks-node"
+eks_oidc_provider_arn   = "arn:aws:iam::<account-id>:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/<oidc-id>"
+private_subnet_ids      = ["subnet-aaa", "subnet-bbb", "subnet-ccc"]
+timescale_kms_key_arn   = "arn:aws:kms:us-east-1:<account-id>:key/<kms-key-id>"
+audit_bucket_name       = "neurosynth-prod-audit-logs"
+healthlake_kms_key_arn  = "arn:aws:kms:us-east-1:<account-id>:key/<kms-key-id>"

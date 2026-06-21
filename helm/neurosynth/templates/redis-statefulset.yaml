@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "neurosynth.fullname" . }}-redis
+spec:
+  serviceName: {{ include "neurosynth.fullname" . }}-redis
+  replicas: 1
+  selector:
+    matchLabels: {app: neurosynth-redis}
+  template:
+    metadata:
+      labels: {app: neurosynth-redis}
+    spec:
+      containers:
+      - name: redis
+        image: {{ .Values.redis.image }}
+        ports: [{containerPort: 6379}]
+        volumeMounts:
+        - name: data
+          mountPath: /data
+  volumeClaimTemplates:
+  - metadata: {name: data}
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: {{ .Values.redis.size }}

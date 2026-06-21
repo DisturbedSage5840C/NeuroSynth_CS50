@@ -1,0 +1,144 @@
+global:
+  imagePullPolicy: IfNotPresent
+  environment: staging
+  # Shared labels used by observability and policy engines.
+  labels:
+    app.kubernetes.io/part-of: neurosynth
+    compliance.neurosynth.io/phi: "true"
+
+image:
+  repository: docker.io/neurosynth/app
+  tag: latest
+  pullPolicy: IfNotPresent
+
+replicaCount: 2
+
+deployment:
+  containerPort: 8000
+  terminationGracePeriodSeconds: 60
+  podAnnotations:
+    # Prometheus scrape annotations so metrics are discoverable without custom ServiceMonitor.
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8000"
+    prometheus.io/path: "/metrics"
+
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: "2"
+      memory: 4Gi
+
+  # Init container executes DB schema migrations before app startup.
+  initContainers:
+    - name: db-migrate
+      image: docker.io/neurosynth/app:latest
+      imagePullPolicy: IfNotPresent
+      command: ["alembic", "upgrade", "head"]
+      envFrom:
+        - configMapRef:
+            name: neurosynth-config
+        - secretRef:
+            name: neurosynth-secrets
+
+  # Sidecars: Fluent Bit for log shipping and optional metrics/proxy adapters.
+  sidecars:
+    - name: fluent-bit
+      image: cr.fluentbit.io/fluent/fluent-bit:3.1
+      imagePullPolicy: IfNotPresent
+      args: ["-c", "/fluent-bit/etc/fluent-bit.conf"]
+      resources:
+        requests:
+          cpu: 50m
+          memory: 128Mi
+        limits:
+          cpu: 200m
+          memory: 256Mi
+
+service:
+  app:
+    type: ClusterIP
+    port: 80
+    targetPort: 8000
+
+  # Optional external service. Enable when exposing via cloud L4 LB directly.
+  external:
+    enabled: true
+    type: LoadBalancer
+    port: 443
+    targetPort: 8000
+    annotations:
+      # Example annotation for cloud LB behavior; tune by platform.
+      service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
+
+ingress:
+  enabled: true
+  className: nginx
+  host: neurosynth.staging.internal
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+  tls:
+    enabled: true
+    secretName: neurosynth-tls
+
+hpa:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 75
+
+pdb:
+  enabled: true
+  minAvailable: 1
+
+serviceAccount:
+  create: true
+  name: neurosynth
+  annotations: {}
+
+config:
+  # Non-secret environment variables are injected by ConfigMap.
+  app:
+    NEUROSYNTH_APP_ENV: staging
+    NEUROSYNTH_METRICS_ENABLED: "true"
+    NEUROSYNTH_POSTGRES_DSN: postgresql://neurosynth@postgres:5432/neurosynth
+    NEUROSYNTH_REDIS_URL: redis://redis:6379/0
+    MLFLOW_TRACKING_URI: http://mlflow:5000
+
+externalSecrets:
+  enabled: true
+  secretStoreRef:
+    name: cluster-secret-store
+    kind: ClusterSecretStore
+  targetSecretName: neurosynth-secrets
+  data:
+    # External Secret Operator maps these remote keys to in-cluster Secret values.
+    - secretKey: HF_TOKEN
+      remoteRef:
+        key: neurosynth/shared
+        property: HF_TOKEN
+    - secretKey: POSTGRES_PASSWORD
+      remoteRef:
+        key: neurosynth/database
+        property: POSTGRES_PASSWORD
+    - secretKey: REDIS_PASSWORD
+      remoteRef:
+        key: neurosynth/redis
+        property: REDIS_PASSWORD
+
+podSecurityContext:
+  runAsNonRoot: true
+  fsGroup: 10001
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: false
+  runAsUser: 10001
+  runAsGroup: 10001
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

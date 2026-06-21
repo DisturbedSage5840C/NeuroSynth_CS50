@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "neurosynth.fullname" . }}-api
+spec:
+  replicas: {{ .Values.api.replicas }}
+  selector:
+    matchLabels: {app: neurosynth-api}
+  template:
+    metadata:
+      labels: {app: neurosynth-api}
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      serviceAccountName: {{ include "neurosynth.fullname" . }}-sa
+      containers:
+      - name: api
+        image: {{ .Values.api.image }}
+        imagePullPolicy: {{ .Values.global.imagePullPolicy }}
+        ports:
+        - containerPort: {{ .Values.api.containerPort }}
+        readinessProbe:
+          httpGet: {path: /health, port: {{ .Values.api.containerPort }}}
+          initialDelaySeconds: 20
+          periodSeconds: 10

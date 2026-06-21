@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "neurosynth.fullname" . }}-llm
+spec:
+  replicas: {{ .Values.llm.replicas }}
+  selector:
+    matchLabels: {app: neurosynth-llm}
+  template:
+    metadata:
+      labels: {app: neurosynth-llm}
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      tolerations:
+      - key: nvidia.com/gpu
+        operator: Exists
+        effect: NoSchedule
+      containers:
+      - name: vllm
+        image: {{ .Values.llm.image }}
+        resources:
+          requests: {{ toYaml .Values.gpuResources.requests | nindent 12 }}
+          limits: {{ toYaml .Values.gpuResources.limits | nindent 12 }}
+        readinessProbe:
+          httpGet: {path: /health, port: 8000}
+          initialDelaySeconds: 60

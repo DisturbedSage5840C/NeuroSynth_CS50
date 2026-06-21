@@ -8,8 +8,9 @@ def test_required_release_contract_files_exist() -> None:
     root = Path(__file__).resolve().parents[2]
     assert (root / ".env.prod.example").exists()
     assert (root / "scripts" / "release_gate.py").exists()
-    # terraform/ and train_orchestrator/publish_model_artifacts scripts are
-    # excluded from the CS50 submission repo (moved to not_in_github/).
+    assert (root / "terraform" / "prod.tfvars.example").exists()
+    assert (root / "scripts" / "train_orchestrator.py").exists()
+    assert (root / "scripts" / "publish_model_artifacts.py").exists()
 
 
 def test_training_orchestrator_summary_schema() -> None:

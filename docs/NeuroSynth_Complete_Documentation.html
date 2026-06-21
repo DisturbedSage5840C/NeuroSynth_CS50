@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeuroSynth Documentation (Regenerated)</title>
+<style>body{font-family:Arial,sans-serif;max-width:960px;margin:40px auto;padding:0 20px;line-height:1.6;color:#111}h1{margin-bottom:8px}h2{margin-top:28px}</style>
+</head><body>
+<h1>NeuroSynth Documentation (Regenerated)</h1>
+<p>Generated on 2026-04-09.</p>
+<h2>Overview</h2><p>NeuroSynth is a clinical AI platform for neurological deterioration prediction using multimodal data: imaging, genomics, wearables, and longitudinal clinical records.</p>
+<h2>Architecture</h2><p>Frontend: React + Vite figma-system app. Backend: FastAPI routers with JWT auth, telemetry, rate limiting, Celery orchestration, and metrics. ML stack lives in src/neurosynth/.</p>
+<h2>Frontend Canonical Paths</h2><p>Canonical UI source is frontend/src/figma-system/. Entry point is frontend/src/main.tsx with React Query provider. Auth flows through frontend/src/features/auth/LoginPage.tsx.</p>
+<h2>Backend Runtime</h2><p>Static serving prefers static/ for Docker artifacts. API routers are mounted in backend/api.py and expose health, patients, predictions, reports, biomarkers, causal, admin, and pipelines endpoints.</p>
+<h2>Verification Summary</h2><p>Frontend build passes with Vite. Full pytest suite passes in Python 3.12 environment. Release gate can be run with required env variables: NEURO_JWKS_URL, NEURO_ALLOWED_ORIGINS, NEURO_REDIS_URL.</p>
+<h2>Run Commands</h2><p>Frontend: npm --prefix frontend install && npm --prefix frontend run build. Backend tests: .venv312/bin/python -m pytest -q --tb=short. API: .venv312/bin/python -m uvicorn backend.api:app --port 8000.</p>
+</body></html>

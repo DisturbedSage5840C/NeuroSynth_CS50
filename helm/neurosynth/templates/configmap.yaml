@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "neurosynth.fullname" . }}-config
+data:
+  ENVIRONMENT: {{ .Values.global.environment | quote }}
+  ISTIO_MTLS: "STRICT"

@@ -1,0 +1,19 @@
+global:
+  environment: prod
+
+api:
+  replicas: 4
+
+triton:
+  replicas: 2
+
+llm:
+  replicas: 2
+
+ingress:
+  host: api.neurosynth.health
+  scheme: internet-facing
+  wafAclArn: ""
+
+serviceAccount:
+  irsaRoleArn: ""

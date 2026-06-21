@@ -1,0 +1,171 @@
+# NeuroSynth Model Server — Kubernetes Deployment
+# GPU-accelerated inference with horizontal pod autoscaling
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neurosynth-model-server
+  namespace: neurosynth
+  labels:
+    app: neurosynth
+    component: model-server
+    version: v2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: neurosynth
+      component: model-server
+  template:
+    metadata:
+      labels:
+        app: neurosynth
+        component: model-server
+        version: v2
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8001"
+        prometheus.io/path: "/metrics"
+    spec:
+      # Schedule only on GPU nodes
+      tolerations:
+        - key: "nvidia.com/gpu"
+          operator: "Exists"
+          effect: "NoSchedule"
+      nodeSelector:
+        neurosynth/node-purpose: model-serving
+
+      containers:
+        - name: model-server
+          image: neurosynth/model-server:v2.0.0-alpha.8
+          ports:
+            - containerPort: 8001
+              name: http
+              protocol: TCP
+          env:
+            - name: MODEL_REGISTRY_PATH
+              value: "/app/models"
+            - name: PROMETHEUS_PORT
+              value: "8001"
+            - name: NEUROSYNTH_POSTGRES_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: neurosynth-secrets
+                  key: postgres-dsn
+            - name: NEUROSYNTH_REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: neurosynth-secrets
+                  key: redis-url
+
+          resources:
+            requests:
+              cpu: "2"
+              memory: "4Gi"
+              nvidia.com/gpu: "1"
+            limits:
+              cpu: "4"
+              memory: "8Gi"
+              nvidia.com/gpu: "1"
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            failureThreshold: 3
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 15
+            failureThreshold: 5
+
+          volumeMounts:
+            - name: model-cache
+              mountPath: /app/models
+
+      volumes:
+        - name: model-cache
+          persistentVolumeClaim:
+            claimName: model-pvc
+
+---
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: neurosynth-model
+  namespace: neurosynth
+  labels:
+    app: neurosynth
+    component: model-server
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8001
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: neurosynth
+    component: model-server
+
+---
+# Horizontal Pod Autoscaler
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: neurosynth-model-hpa
+  namespace: neurosynth
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: neurosynth-model-server
+  minReplicas: 2
+  maxReplicas: 8
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Pods
+      pods:
+        metric:
+          name: neurosynth_inference_latency_seconds
+        target:
+          type: AverageValue
+          averageValue: "2"
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+        - type: Pods
+          value: 2
+          periodSeconds: 60
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+        - type: Pods
+          value: 1
+          periodSeconds: 120
+
+---
+# PersistentVolumeClaim for model artifacts
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: model-pvc
+  namespace: neurosynth
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: gp3
