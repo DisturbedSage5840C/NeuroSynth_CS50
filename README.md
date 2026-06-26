@@ -1,4 +1,7 @@
 # NeuroSynth
+#### Video Demo: <URL HERE>
+#### Description:
+NeuroSynth is a full-stack clinical AI platform for neurological disease risk prediction, explainable inference, and longitudinal decision support. Built with a FastAPI backend, a 6-model calibrated ensemble (CatBoost, LightGBM, Random Forest, Gradient Boosting, Logistic Regression, TabNet), RAG-enhanced SOAP clinical reports via Claude, 3D brain visualization (Three.js), causal inference engine, FHIR R4 export, and a React/TypeScript frontend — trained on real patient data from 11 public clinical datasets covering Alzheimer's, Parkinson's, ALS, MS, Epilepsy, and Huntington's Disease.
 
 > Clinical AI platform for neurological disease risk prediction, explainable inference, and longitudinal decision support — trained on **20,000+ real patient records** from 11 public clinical datasets.
 
